@@ -1,3 +1,2 @@
-import express from 'express'
-
-export const app = express();
+export * from './api';
+import './setup'
