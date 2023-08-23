@@ -41,7 +41,15 @@ export class ApiExpress implements IApi {
 
     static Api = express();
 
+    use(controller: IController):void;
     use(...props:any): void {
+        if ('exec' in props)
+        {
+            ApiExpress.Api.use(async (req,res) => {
+                new ExecControllerApi().execAndException(req, res, props[0])
+            });
+            return;
+        }
         ApiExpress.Api.use(...props);
     }
 
