@@ -1,4 +1,3 @@
-import { Api } from "./app";
-import { PORT } from "./config";
+import { Api } from "./api";
 
-Api.listen(PORT, () => console.log(`Run in ${PORT}`));
+Api.run();
