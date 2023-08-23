@@ -9,8 +9,8 @@ export class HTTPException extends Error {
 }
 
 export class HTTPStatus {
-    static OK:200;
-    static UNAUTHORIZED:401;
-    static NOT_FOUND:404;
-    static INTERNAL_SERVER_ERROR:500;
+    static OK = 200;
+    static UNAUTHORIZED = 401;
+    static NOT_FOUND = 404;
+    static INTERNAL_SERVER_ERROR = 500;
 }

@@ -1,11 +1,16 @@
 import express, { Request, Response } from 'express'
 import { IApi } from '../interfaces/Api';
-import { PATH_ROOT, PORT } from '../config';
+import { PATH_HTML, PORT } from '../config';
 import cors from 'cors'
 import { IController } from '../interfaces/Controller';
 import { HTTPException, HTTPStatus } from '../entities/error';
+import { ILogs } from '../interfaces/ILogs';
 
 class ExecControllerApi {
+    constructor(
+        private readonly logs:ILogs
+    ) {}
+
     private async exec(req:Request, res:Response, controller: IController)
     {
         const {body, headers, params, query, url} = req;
@@ -20,10 +25,13 @@ class ExecControllerApi {
     private async exception(res:Response, e:any)
     {
         if (e instanceof HTTPException)
+        {
             res.status(e.status).send(e.message);
+        }
         else
         {
-            res.status(HTTPStatus.INTERNAL_SERVER_ERROR).sendFile(PATH_ROOT + '/html/internal-error.html')
+            this.logs.error(e.stack || e.message);
+            res.status(HTTPStatus.INTERNAL_SERVER_ERROR).sendFile(PATH_HTML + '/internal-error.html')
         }
     }
 
@@ -41,12 +49,24 @@ export class ApiExpress implements IApi {
 
     static Api = express();
 
+    constructor(
+        private readonly logs:ILogs
+    ) {}
+
     use(controller: IController):void;
+    use(url:string, controller: IController):void;
     use(...props:any): void {
-        if ('exec' in props)
+        if ('exec' in props[0])
         {
             ApiExpress.Api.use(async (req,res) => {
-                new ExecControllerApi().execAndException(req, res, props[0])
+                new ExecControllerApi(this.logs).execAndException(req, res, props[0])
+            });
+            return;
+        }
+        if ((typeof props[0] === 'string') || ('exec' in props[1]))
+        {
+            ApiExpress.Api.use(async (req,res) => {
+                new ExecControllerApi(this.logs).execAndException(req, res, props[0])
             });
             return;
         }
@@ -55,31 +75,31 @@ export class ApiExpress implements IApi {
 
     all(url:string, controller: IController) {
         ApiExpress.Api.all(url, async (req,res) => {
-            new ExecControllerApi().execAndException(req, res, controller)
+            new ExecControllerApi(this.logs).execAndException(req, res, controller)
         })
     }
 
     get(url: string, controller: IController): void {
         ApiExpress.Api.get(url, async (req,res) => {
-            new ExecControllerApi().execAndException(req, res, controller)
+            new ExecControllerApi(this.logs).execAndException(req, res, controller)
         })
     }
 
     delete(url: string, controller: IController): void {
         ApiExpress.Api.delete(url, async (req,res) => {
-            new ExecControllerApi().execAndException(req, res, controller)
+            new ExecControllerApi(this.logs).execAndException(req, res, controller)
         })
     }
 
     post(url: string, controller: IController): void {
         ApiExpress.Api.post(url, async (req,res) => {
-            new ExecControllerApi().execAndException(req, res, controller)
+            new ExecControllerApi(this.logs).execAndException(req, res, controller)
         })
     }
 
     put(url: string, controller: IController): void {
         ApiExpress.Api.put(url, async (req,res) => {
-            new ExecControllerApi().execAndException(req, res, controller)
+            new ExecControllerApi(this.logs).execAndException(req, res, controller)
         })
     }
 
