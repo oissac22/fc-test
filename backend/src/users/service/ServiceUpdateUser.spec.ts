@@ -106,14 +106,7 @@ describe('ServiceUpdateUser class', () => {
         const { service, models } = newServiceUpdateUser(1, { name:'test rename' });
         await service.result();
         expect(models._data).toEqual({
-            "age": new Date("2023-08-24T03:00:00.000Z"),
-            "cpf": "00000000000",
-            "email": "test@test.com",
-            "login": "test",
-            "mather": "Fulana de tal",
-            "name": "Test",
-            "password": "12345678",
-            "phone": "5581900000000"
+            "name": "test rename"
         });
     })
 
