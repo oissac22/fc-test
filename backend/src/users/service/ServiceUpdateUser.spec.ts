@@ -1,8 +1,6 @@
 import { IModelUsers, IUsersDataList, IUsersDataNoPassword, IUsersDataUpdate, IUsersListFilter } from "../../interfaces/IModelUsers"
 import { ServiceUpdateUser } from "./ServiceUpdateUser"
 
-const FAKE_ID = 15;
-
 const FAKE_DATA:IUsersDataUpdate = {
     age: new Date('2023/08/24'),
     cpf: '000.000.000-00',
