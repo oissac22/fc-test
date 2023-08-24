@@ -1,11 +1,16 @@
-import { IServicesUsers, IUsersDataInsert, IUsersDataList, IUsersDataNoPassword, IUsersListFilter } from "../../interfaces/IModelUsers";
+import { IModelUsers, IServicesUsers, IUsersDataInsert, IUsersDataList, IUsersDataNoPassword, IUsersListFilter } from "../../interfaces/IModelUsers";
+import { SericeInsertUser } from "./SericeInsertUser";
 
 export class ServiceUsers implements IServicesUsers {
 
+    constructor(
+        private readonly modelUsers:IModelUsers
+    ){}
+
     insertUser(data: IUsersDataInsert): Promise<{ id: number; }> {
-        throw new Error("Method not implemented.");
+        return new SericeInsertUser(data, this.modelUsers).result();
     }
-    
+
     updateUser(id: number, data: IUsersDataInsert): Promise<{ id: number; }> {
         throw new Error("Method not implemented.");
     }
@@ -27,3 +32,4 @@ export class ServiceUsers implements IServicesUsers {
     }
 
 }
+
