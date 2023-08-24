@@ -1,7 +1,11 @@
-import { Database } from "../../databasesql";
 import { IModelUsers, IUsersDataInsert, IUsersDataList, IUsersDataNoPassword, IUsersListFilter } from "../../interfaces/IModelUsers";
+import { ISQL } from "../../interfaces/ISQL";
 
 export class ModelUsers implements IModelUsers {
+    constructor(
+        private readonly database:ISQL
+    ){}
+
     insertUser(data: IUsersDataInsert): Promise<{ id: number; }> {
         throw new Error("Method not implemented.");
     }
@@ -19,7 +23,7 @@ export class ModelUsers implements IModelUsers {
             FROM users
             LIMIT ?
             OFFSET ?`;
-        const result = await Database.list(sql, [props.index, props.limit])
+        const result = await this.database.list(sql, [props.limit, props.index])
         return result;
     }
 
