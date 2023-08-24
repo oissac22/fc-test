@@ -6,7 +6,7 @@ describe("ModelUsers_Delete class", () => {
     it("delete user by id", async () => {
         const { model, database } = newModelUsers_Delete(4);
         const sut = await model.result();
-        expect(sut).toEqual({id:1});
+        expect(sut).toEqual(undefined);
         expect(database._query).toBe("delete from users where id=?");
         expect(database._props).toEqual(["4"]);
     })

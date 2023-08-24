@@ -9,12 +9,11 @@ export class ModelUsers_Delete {
         private readonly database: ISQL
     ) { }
 
-    async result(): Promise<{ id: number; }> {
+    async result(): Promise<void> {
         const sqlObj = new SQLQueryDeleteById(this.id + '', 'users');
-        const result = await this.database.exec(
+        await this.database.exec(
             sqlObj.sql,
             sqlObj.propsValues
         );
-        return result;
     }
 }
