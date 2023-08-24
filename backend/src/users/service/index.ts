@@ -11,7 +11,7 @@ export class ServiceUsers implements IServicesUsers {
         return new ServiceInsertUser(data, this.modelUsers).result();
     }
 
-    updateUser(id: number, data: IUsersDataUpdate): Promise<{ id: number; }> {
+    updateUser(id: number, data: IUsersDataUpdate): Promise<void> {
         throw new Error("Method not implemented.");
     }
 

@@ -44,10 +44,9 @@ export class ServiceUpdateUser {
             throw new HTTPException(`"${age}" não é uma data de nascimento válida`, HTTPStatus.NOT_ACCEPTABLE, 'notValidAge');
     }
 
-    async result(): Promise<{ id: number; }> {
+    async result(): Promise<void> {
         this.verifyData();
         this.adjustPhoneDDI();
         const result = this.modelUsers.updateUser(this.id, this.data);
-        return result;
     }
 }
