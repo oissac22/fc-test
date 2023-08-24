@@ -5,6 +5,7 @@ import { ModelUsers_Insert } from "./ModelUsers_Insert";
 import { ModelUsers_ListUsers } from "./ModelUsers_ListUsers";
 import { ModelUsers_Update } from "./ModelUsers_Update";
 import { ModelUsers_dataUserById } from "./ModelUsers_dataUserById";
+import { ModelUsers_dataUserByPassword } from "./ModelUsers_dataUserByPassword";
 
 export class ModelUsers implements IModelUsers {
     constructor(
@@ -32,6 +33,6 @@ export class ModelUsers implements IModelUsers {
     }
 
     userByPassword(login: string, password: string): Promise<IUsersDataNoPassword> {
-        throw new Error("Method not implemented.");
+        return new ModelUsers_dataUserByPassword(login, password, this.database).result();
     }
 }
