@@ -1,5 +1,6 @@
 import { IModelUsers, IUsersDataInsert, IUsersDataList, IUsersDataNoPassword, IUsersListFilter } from "../../interfaces/IModelUsers";
 import { ISQL } from "../../interfaces/ISQL";
+import { ModelUsers_ListUsers } from "./ModelUsers_ListUsers";
 
 export class ModelUsers implements IModelUsers {
     constructor(
@@ -18,13 +19,8 @@ export class ModelUsers implements IModelUsers {
         throw new Error("Method not implemented.");
     }
 
-    async listUsers(props: IUsersListFilter):Promise<IUsersDataList> {
-        const sql = `SELECT id, name, email, phone
-            FROM users
-            LIMIT ?
-            OFFSET ?`;
-        const result = await this.database.list(sql, [props.limit, props.index])
-        return result;
+    listUsers(props: IUsersListFilter):Promise<IUsersDataList[]> {
+        return new ModelUsers_ListUsers(props, this.database).result();
     }
 
     datailUser(id: number): Promise<IUsersDataNoPassword> {

@@ -30,7 +30,7 @@ export interface IModelUsers {
     insertUser(data:IUsersDataInsert):Promise<{ id:number }>;
     updateUser(id:number, data:IUsersDataInsert):Promise<{ id:number }>;
     deleteUser(id:number):Promise<void>;
-    listUsers(props: IUsersListFilter):Promise<IUsersDataList>;
+    listUsers(props: IUsersListFilter):Promise<IUsersDataList[]>;
     datailUser(id:number):Promise<IUsersDataNoPassword>;
     userByPassword(login:string, password:string):Promise<IUsersDataNoPassword>
 }
