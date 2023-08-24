@@ -15,7 +15,7 @@ describe("ModelUsers_Insert class", () => {
         const sut = await model.result();
         expect(sut).toEqual({id:1});
         expect(database._query).toBe("insert into users (age,cpf,email,login,mather,name,password,phone,status) values (?,?,?,?,?,?,?,?,?)");
-        expect(database._props).toEqual([FAKE_DATE.toISOString(), "00000000000", "test@test.com", "validlogin", "Mather test", "Name test", "123456", "81900000000", "active"]);
+        expect(database._props).toEqual([FAKE_DATE.toISOString(), "00000000000", "test@test.com", "validlogin", "Mather test", "Name test", "*crip:123456", "81900000000", "active"]);
     })
 
     it("insert user, without status data", async () => {
@@ -26,7 +26,7 @@ describe("ModelUsers_Insert class", () => {
         const sut = await model.result();
         expect(sut).toEqual({id:1});
         expect(database._query).toBe("insert into users (age,cpf,email,login,mather,name,password,phone) values (?,?,?,?,?,?,?,?)");
-        expect(database._props).toEqual([FAKE_DATE.toISOString(), "00000000000", "test@test.com", "validlogin", "Mather test", "Name test", "123456", "81900000000"]);
+        expect(database._props).toEqual([FAKE_DATE.toISOString(), "00000000000", "test@test.com", "validlogin", "Mather test", "Name test", "*crip:123456", "81900000000"]);
     })
 
 })

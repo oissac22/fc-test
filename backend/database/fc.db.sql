@@ -18,7 +18,7 @@ create table if not exists users (
 insert into users
 (name, login, password, email, phone, cpf, age, mather)
 values
-("Cássio", "cassio", "654321", "cassio@test.com", "81900000001", "10020030040", "1984-09-08", "Catia"),
-("Maria", "maria", "654321", "maria@test.com", "81900000002", "10020030041", "1990-06-01", "Madalena"),
-("Ana", "ana", "654321", "ana@test.com", "81900000003", "10020030043", "2000-01-30", "Rejane"),
-("Hadassa", "hadassa", "654321", "hadassa@test.com", "81900000004", "10020030044", "2005-06-25", "Raiany");
+("Cássio", "cassio", "*crip:123456", "cassio@test.com", "81900000001", "10020030040", "1984-09-08", "Catia"),
+("Maria", "maria", "*crip:123456", "maria@test.com", "81900000002", "10020030041", "1990-06-01", "Madalena"),
+("Ana", "ana", "*crip:123456", "ana@test.com", "81900000003", "10020030043", "2000-01-30", "Rejane"),
+("Hadassa", "hadassa", "*crip:123456", "hadassa@test.com", "81900000004", "10020030044", "2005-06-25", "Raiany");

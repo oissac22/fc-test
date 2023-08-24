@@ -1,4 +1,5 @@
 import { SQLQueryUpdateById } from "../../databasesql";
+import { passwordCrip } from "../../entities/passwordCrip";
 import { IUsersDataUpdate } from "../../interfaces/IModelUsers";
 import { ISQL } from "../../interfaces/ISQL";
 
@@ -8,7 +9,10 @@ export class ModelUsers_Update {
         private readonly id: number,
         private readonly data: IUsersDataUpdate,
         private readonly database: ISQL
-    ) { }
+    ) {
+        if (data.password)
+            data.password = passwordCrip(data.password);
+    }
 
     async result(): Promise<{ id: number; }> {
         const data = { ...this.data, age: this.data.age.toISOString() };
