@@ -33,10 +33,31 @@ describe('SericeInsertUser class', () => {
     })
 
     it('insert data with invalide age', async () => {
-        const { service, models } = newSericeInsertUser({...FAKE_DATA, age: new Date('invalid date')});
+        const { service } = newSericeInsertUser({...FAKE_DATA, age: new Date('invalid date')});
         await expect(() => service.result())
             .rejects
-            .toThrow('***');
+            .toThrow('"Invalid Date" não é uma data de nascimento válida');
+    })
+
+    it('insert data with invalide cpf', async () => {
+        const { service } = newSericeInsertUser({...FAKE_DATA, cpf:'as61df8w9we00'});
+        await expect(() => service.result())
+            .rejects
+            .toThrow('"618900" não é um cpf válido');
+    })
+
+    it('insert data with invalide email test@test', async () => {
+        const { service } = newSericeInsertUser({...FAKE_DATA, email:'test@test'});
+        await expect(() => service.result())
+            .rejects
+            .toThrow('"test@test" não é um e-mail válido');
+    })
+
+    it('insert data with invalide email testtest.com', async () => {
+        const { service } = newSericeInsertUser({...FAKE_DATA, email:'testtest.com'});
+        await expect(() => service.result())
+            .rejects
+            .toThrow('"testtest.com" não é um e-mail válido');
     })
 
 })
