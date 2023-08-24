@@ -6,7 +6,7 @@ const FAKE_DATE = new Date();
 
 describe("ModelUsers_Insert class", () => {
 
-    it("list users", async () => {
+    it("insert user", async () => {
         const { model, database } = newModelUsers_Insert({
             age:FAKE_DATE, cpf:'00000000000', email:'test@test.com', login:'validlogin',
             mather:'Mather test', name:'Name test', password:'123456', phone:'81900000000',
@@ -18,7 +18,7 @@ describe("ModelUsers_Insert class", () => {
         expect(database._props).toEqual([FAKE_DATE.toISOString(), "00000000000", "test@test.com", "validlogin", "Mather test", "Name test", "123456", "81900000000", "active"]);
     })
 
-    it("list users, without status data", async () => {
+    it("insert user, without status data", async () => {
         const { model, database } = newModelUsers_Insert({
             age:FAKE_DATE, cpf:'00000000000', email:'test@test.com', login:'validlogin',
             mather:'Mather test', name:'Name test', password:'123456', phone:'81900000000'

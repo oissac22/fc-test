@@ -6,3 +6,4 @@ export const Database:ISQL = new SQLite();
 
 export * from './SQLQueryInsert';
 export * from './SQLQueryUpdateById';
+export * from './SQLQueryDeleteById';
