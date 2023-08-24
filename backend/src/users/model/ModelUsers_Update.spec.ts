@@ -17,8 +17,8 @@ describe("ModelUsers_Update class", () => {
         );
         const sut = await model.result();
         expect(sut).toEqual({id:1});
-        expect(database._query).toBe("update users set age=?,cpf=?,email=?,login=?,mather=?,name=?,password=?,phone=? where id=?");
-        expect(database._props).toEqual([FAKE_DATE.toISOString(), "00000000000", "test@test.com", "validlogin", "Mather test", "Name test", "123456", "81900000000", "active", ]);
+        expect(database._query).toBe("update users set age=?,cpf=?,email=?,login=?,mather=?,name=?,password=?,phone=?,status=? where id=?");
+        expect(database._props).toEqual([FAKE_DATE.toISOString(), "00000000000", "test@test.com", "validlogin", "Mather test", "Name test", "123456", "81900000000", "active", "4"]);
     })
 
     it("list users, without status data", async () => {
@@ -28,8 +28,8 @@ describe("ModelUsers_Update class", () => {
         });
         const sut = await model.result();
         expect(sut).toEqual({id:1});
-        expect(database._query).toBe("update users set age=?,cpf=?,email=?,login=?,mather=?,name=?,password=?,phone=?,status=? where id=?");
-        expect(database._props).toEqual([FAKE_DATE.toISOString(), "00000000000", "test@test.com", "validlogin", "Mather test", "Name test", "123456", "81900000000"]);
+        expect(database._query).toBe("update users set age=?,cpf=?,email=?,login=?,mather=?,name=?,password=?,phone=? where id=?");
+        expect(database._props).toEqual([FAKE_DATE.toISOString(), "00000000000", "test@test.com", "validlogin", "Mather test", "Name test", "123456", "81900000000", "4"]);
     })
 
 })
@@ -40,6 +40,7 @@ function newModelUsers_Update(id:number, data: IUsersDataInsert)
     const model = new ModelUsers_Update(id, data, database);
     return {model, database};
 }
+
 
 class FakeDatabase implements ISQL {
     _query:any = null;

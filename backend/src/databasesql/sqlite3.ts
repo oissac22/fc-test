@@ -9,7 +9,6 @@ export class SQLite implements ISQL {
     list(query: string, props?: string[]): Promise<any[]>
     {
         return new Promise((res, rej) => {
-            console.log('query, props :>> ', query, props);
             this.dbSqlite.all(query, props || [], (err, rows) => {
                 if (err)
                     rej(err);
