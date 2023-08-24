@@ -1,8 +1,10 @@
 import { IModelUsers, IUsersDataInsert, IUsersDataList, IUsersDataNoPassword, IUsersListFilter } from "../../interfaces/IModelUsers";
 import { ISQL } from "../../interfaces/ISQL";
+import { ModelUsers_Delete } from "./ModelUsers_Delete";
 import { ModelUsers_Insert } from "./ModelUsers_Insert";
 import { ModelUsers_ListUsers } from "./ModelUsers_ListUsers";
 import { ModelUsers_Update } from "./ModelUsers_Update";
+import { ModelUsers_dataUserById } from "./ModelUsers_dataUserById";
 
 export class ModelUsers implements IModelUsers {
     constructor(
@@ -18,7 +20,7 @@ export class ModelUsers implements IModelUsers {
     }
 
     deleteUser(id: number): Promise<void> {
-        throw new Error("Method not implemented.");
+        return new ModelUsers_Delete(id, this.database).result();
     }
 
     listUsers(props: IUsersListFilter):Promise<IUsersDataList[]> {
@@ -26,7 +28,7 @@ export class ModelUsers implements IModelUsers {
     }
 
     datailUser(id: number): Promise<IUsersDataNoPassword> {
-        throw new Error("Method not implemented.");
+        return new ModelUsers_dataUserById(id, this.database).result();
     }
 
     userByPassword(login: string, password: string): Promise<IUsersDataNoPassword> {

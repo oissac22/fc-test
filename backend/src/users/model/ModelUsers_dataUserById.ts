@@ -13,7 +13,7 @@ export class ModelUsers_dataUserById {
         private readonly database: ISQL
     ) { }
 
-    async result(): Promise<IUsersDataNoPassword[]> {
+    async result(): Promise<IUsersDataNoPassword> {
         const result = await this.database.list(SQL, [this.id]);
         const user = result[0] || null;
         if (!user)
