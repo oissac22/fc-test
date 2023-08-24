@@ -1,3 +1,4 @@
+import { Database } from "../../databasesql";
 import { IModelUsers, IUsersDataInsert, IUsersDataList, IUsersDataNoPassword, IUsersListFilter } from "../../interfaces/IModelUsers";
 
 export class ModelUsers implements IModelUsers {
@@ -13,8 +14,13 @@ export class ModelUsers implements IModelUsers {
         throw new Error("Method not implemented.");
     }
 
-    listUsers(props: IUsersListFilter): Promise<IUsersDataList> {
-        throw new Error("Method not implemented.");
+    async listUsers(props: IUsersListFilter):Promise<IUsersDataList> {
+        const sql = `SELECT id, name, email, phone
+            FROM users
+            LIMIT ?
+            OFFSET ?`;
+        const result = await Database.list(sql, [props.index, props.limit])
+        return result;
     }
 
     datailUser(id: number): Promise<IUsersDataNoPassword> {

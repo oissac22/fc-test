@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { Api } from "./api";
 import { ControllerNotFound } from "./not-found";
 import { ControllerTestError } from "./test-error";
