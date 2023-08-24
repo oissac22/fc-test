@@ -28,7 +28,7 @@ export type IUsersDataNoPassword = Omit<IUsersData, "login" | "password">
 
 export interface IModelUsers {
     insertUser(data:IUsersDataInsert):Promise<{ id:number }>;
-    updateUser(id:number, data:IUsersDataInsert):Promise<{ id:number }>;
+    updateUser(id:number, data:IUsersDataUpdate):Promise<{ id:number }>;
     deleteUser(id:number):Promise<void>;
     listUsers(props: IUsersListFilter):Promise<IUsersDataList[]>;
     datailUser(id:number):Promise<IUsersDataNoPassword>;
