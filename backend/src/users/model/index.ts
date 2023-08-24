@@ -2,6 +2,7 @@ import { IModelUsers, IUsersDataInsert, IUsersDataList, IUsersDataNoPassword, IU
 import { ISQL } from "../../interfaces/ISQL";
 import { ModelUsers_Insert } from "./ModelUsers_Insert";
 import { ModelUsers_ListUsers } from "./ModelUsers_ListUsers";
+import { ModelUsers_Update } from "./ModelUsers_Update";
 
 export class ModelUsers implements IModelUsers {
     constructor(
@@ -13,7 +14,7 @@ export class ModelUsers implements IModelUsers {
     }
     
     updateUser(id: number, data: IUsersDataInsert): Promise<{ id: number; }> {
-        throw new Error("Method not implemented.");
+        return new ModelUsers_Update(id, data, this.database).result();
     }
 
     deleteUser(id: number): Promise<void> {
