@@ -19,7 +19,7 @@ export class ModelUsers_dataUserByPassword {
         const result = await this.database.list(SQL, [this.login, passwordCrip(this.password)]);
         const user = result[0] || null;
         if (!user)
-            throw new HTTPException(`Login ou senha inválida`, HTTPStatus.NOT_FOUND);
+            throw new HTTPException(`Login ou senha inválida`, HTTPStatus.NOT_FOUND, 'loginNotFound');
         const {password, ...userNoPassword} = user;
         return userNoPassword;
     }

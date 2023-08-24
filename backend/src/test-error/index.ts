@@ -1,4 +1,3 @@
-import { HTTPException, HTTPStatus } from "../entities/error";
 import { IController, TControllerExec } from "../interfaces/Controller";
 
 export class ControllerTestError implements IController {

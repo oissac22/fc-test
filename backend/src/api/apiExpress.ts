@@ -26,7 +26,7 @@ class ExecControllerApi {
     {
         if (e instanceof HTTPException)
         {
-            res.status(e.status).send(e.message);
+            res.status(e.status).send({ error:e.message, status:e.status, name:e.name});
         }
         else
         {

@@ -17,7 +17,7 @@ export class ModelUsers_dataUserById {
         const result = await this.database.list(SQL, [this.id]);
         const user = result[0] || null;
         if (!user)
-            throw new HTTPException(`Usuário de id ${this.id} não encontrado`, HTTPStatus.NOT_FOUND);
+            throw new HTTPException(`Usuário de id ${this.id} não encontrado`, HTTPStatus.NOT_FOUND, 'userNotFound');
         const {password, ...userNoPassword} = user;
         return userNoPassword;
     }
