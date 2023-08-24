@@ -22,7 +22,7 @@ export type IUsersListFilter = {
 }
 
 export type IUsersDataInsert = Omit<IUsersData, "id" | "dateInsert" | "dateUpdate" | "status"> & { status?: TUserStatus }
-export type IUsersDataUpdate = Partial<IUsersDataInsert>
+export type IUsersDataUpdate = Partial<Omit<IUsersDataInsert, "id">>
 export type IUsersDataList = Pick<IUsersData, "id" | "name" | "email" | "phone">
 export type IUsersDataNoPassword = Omit<IUsersData, "login" | "password">
 
