@@ -4,6 +4,7 @@ export const PORT = Number(process.env.PORT || "4444") ;
 
 export const PATH_ROOT = path.join(__dirname, '..');
 export const PATH_HTML = path.join(PATH_ROOT, 'html');
+export const PATH_DATABASE = path.join(PATH_ROOT, 'database');
 
 export const AUTHORIZATION_WEB = process.env.AUTHORIZATION_WEB || "TZjlUKjhSpSV4axgGec6bvLuUlPnBgl7" ;
 export const AUTHORIZATION_MOBILE = process.env.AUTHORIZATION_MOBILE || "JanHWrsUCHqlW4McUsFJDg147J5QZ0W1" ;
