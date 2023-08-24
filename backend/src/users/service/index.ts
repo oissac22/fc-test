@@ -1,4 +1,4 @@
-import { IModelUsers, IServicesUsers, IUsersDataInsert, IUsersDataList, IUsersDataNoPassword, IUsersListFilter } from "../../interfaces/IModelUsers";
+import { IModelUsers, IServicesUsers, IUsersDataInsert, IUsersDataList, IUsersDataNoPassword, IUsersDataUpdate, IUsersListFilter } from "../../interfaces/IModelUsers";
 import { ServiceInsertUser } from "./ServiceInsertUser";
 
 export class ServiceUsers implements IServicesUsers {
@@ -11,7 +11,7 @@ export class ServiceUsers implements IServicesUsers {
         return new ServiceInsertUser(data, this.modelUsers).result();
     }
 
-    updateUser(id: number, data: IUsersDataInsert): Promise<{ id: number; }> {
+    updateUser(id: number, data: IUsersDataUpdate): Promise<{ id: number; }> {
         throw new Error("Method not implemented.");
     }
 
