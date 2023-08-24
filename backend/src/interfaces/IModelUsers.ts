@@ -34,3 +34,12 @@ export interface IModelUsers {
     datailUser(id:number):Promise<IUsersDataNoPassword>;
     userByPassword(login:string, password:string):Promise<IUsersDataNoPassword>
 }
+
+export interface IServicesUsers {
+    insertUser(data:IUsersDataInsert):Promise<{ id:number }>;
+    updateUser(id:number, data:IUsersDataInsert):Promise<{ id:number }>;
+    deleteUser(id:number):Promise<void>;
+    listUsers(props: IUsersListFilter):Promise<IUsersDataList[]>;
+    datailUser(id:number):Promise<IUsersDataNoPassword>;
+    userByPassword(login:string, password:string):Promise<IUsersDataNoPassword>
+}

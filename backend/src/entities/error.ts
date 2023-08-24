@@ -1,10 +1,12 @@
 export class HTTPException extends Error {
     constructor(
         message:string,
-        readonly status:number
+        readonly status:number,
+        name?: string
     )
     {
         super(message);
+        super.name = name || 'Error';
     }
 }
 
