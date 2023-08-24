@@ -1,5 +1,5 @@
 import { IModelUsers, IServicesUsers, IUsersDataInsert, IUsersDataList, IUsersDataNoPassword, IUsersListFilter } from "../../interfaces/IModelUsers";
-import { SericeInsertUser } from "./SericeInsertUser";
+import { ServiceInsertUser } from "./ServiceInsertUser";
 
 export class ServiceUsers implements IServicesUsers {
 
@@ -8,7 +8,7 @@ export class ServiceUsers implements IServicesUsers {
     ){}
 
     insertUser(data: IUsersDataInsert): Promise<{ id: number; }> {
-        return new SericeInsertUser(data, this.modelUsers).result();
+        return new ServiceInsertUser(data, this.modelUsers).result();
     }
 
     updateUser(id: number, data: IUsersDataInsert): Promise<{ id: number; }> {
