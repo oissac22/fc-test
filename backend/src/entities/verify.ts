@@ -18,7 +18,7 @@ export class Verify {
     {
         if (typeof status !== 'string')
             return false;
-        return ["block", "inactive", "active"].indexOf(status) < 0;
+        return ["block", "inactive", "active"].indexOf(status) >= 0;
     }
 
     static nameUser(name:string)
@@ -53,7 +53,7 @@ export class Verify {
     {
         if (!(date instanceof Date))
             return false;
-        return !(date.getTimezoneOffset())
+        return !!(date.getTimezoneOffset())
     }
 
 }
