@@ -1,5 +1,9 @@
 import { IModelUsers, IServicesUsers, IUsersDataInsert, IUsersDataList, IUsersDataNoPassword, IUsersDataUpdate, IUsersListFilter } from "../../interfaces/IModelUsers";
 import { ServiceInsertUser } from "./ServiceInsertUser";
+import { ServiceUpdateUser } from "./ServiceUpdateUser";
+import { ServiceUsersListUsers } from "./ServiceUsersListUsers";
+
+export const MAX_LIMIT = 100;
 
 export class ServiceUsers implements IServicesUsers {
 
@@ -12,19 +16,19 @@ export class ServiceUsers implements IServicesUsers {
     }
 
     updateUser(id: number, data: IUsersDataUpdate): Promise<void> {
-        throw new Error("Method not implemented.");
+        return new ServiceUpdateUser(id, data, this.modelUsers).result();
     }
 
     deleteUser(id: number): Promise<void> {
-        throw new Error("Method not implemented.");
+        return this.modelUsers.deleteUser(id)
     }
 
     listUsers(props: IUsersListFilter): Promise<IUsersDataList[]> {
-        throw new Error("Method not implemented.");
+        return new ServiceUsersListUsers(props, this.modelUsers).result();
     }
 
     datailUser(id: number): Promise<IUsersDataNoPassword> {
-        throw new Error("Method not implemented.");
+        return this.modelUsers.datailUser(id);
     }
 
     userByPassword(login: string, password: string): Promise<IUsersDataNoPassword> {
