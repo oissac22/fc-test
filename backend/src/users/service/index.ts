@@ -32,7 +32,7 @@ export class ServiceUsers implements IServicesUsers {
     }
 
     userByPassword(login: string, password: string): Promise<IUsersDataNoPassword> {
-        throw new Error("Method not implemented.");
+        return this.modelUsers.userByPassword(login, password);
     }
 
 }
