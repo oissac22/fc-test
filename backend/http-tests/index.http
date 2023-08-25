@@ -1,5 +1,9 @@
-GET http://localhost:4444
+@host=http://localhost:4444
+
+GET {{host}}
 ###
 
-GET http://localhost:4444/test-error
+GET {{host}}/test-error
 ###
+
+GET {{host}}/api/v1/users
