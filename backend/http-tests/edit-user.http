@@ -1,0 +1,28 @@
+@host=http://localhost:4444
+
+GET {{host}}/api/v1/users/5
+###
+
+PUT {{host}}/api/v1/users/5
+Content-Type: application/json
+
+{
+    "email": "test1B@test.com"
+}
+###
+
+PUT {{host}}/api/v1/users/5
+Content-Type: application/json
+
+{
+    "password": "test123B"
+}
+###
+
+PUT {{host}}/api/v1/users/5
+Content-Type: application/json
+
+{
+    "name": "Test 1 D"
+}
+###

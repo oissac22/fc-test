@@ -1,0 +1,23 @@
+@host=http://localhost:4444
+
+POST {{host}}/api/v1/users
+Content-Type: application/json
+
+{
+    "email": "test-delete@test.com",
+    "phone": "81 900000001",
+    "name": "Test Delete",
+    "cpf": "000.000.000-01",
+    "login": "testdelete",
+    "password": "test123",
+    "age": "2023-08-25"
+}
+###
+
+@id=8
+
+GET {{host}}/api/v1/users/{{id}}
+###
+
+DELETE {{host}}/api/v1/users/{{id}}
+###
