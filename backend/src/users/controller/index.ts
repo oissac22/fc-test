@@ -1,6 +1,6 @@
-
 export * from './ControllerUsersList'
 export * from './ControllerUsersDataById'
 export * from './ControllerUserInsertData'
 export * from './ControllerUserUpdateData'
 export * from './ControllerUserDeleteById'
+export * from './ControllerUserDataByPassword'
