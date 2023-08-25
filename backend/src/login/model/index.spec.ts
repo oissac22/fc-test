@@ -29,7 +29,7 @@ describe('ModelLogin class', () => {
         expect(database._props).toEqual(["refresh-token", FAKE_DATE.toISOString(), 'valid_token']);
     })
 
-    it('update login token', async () => {
+    it('get login by refresh_token', async () => {
         const { database, model } = newModelLogin();
         await model.getLogin('valid_token');
         expect(database._query).toBe("select * from login_token where refresh_token = ?");
