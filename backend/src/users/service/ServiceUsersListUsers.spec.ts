@@ -27,8 +27,15 @@ describe('ServiceUsersListUsers class', () => {
     it('list users', async () => {
         const { service, model } = newServiceUsersListUsers({ index:0, limit:3 });
         const sut = await service.result();
-        expect(sut).toEqual('***');
-        expect(model._props).toEqual('***');
+        expect(sut).toEqual(FAKE_RESULT);
+        expect(model._props).toEqual({"index": 0, "limit": 3});
+    })
+
+    it('list users with filter', async () => {
+        const { service, model } = newServiceUsersListUsers({ index:0, limit:3, filter:'filter test' });
+        const sut = await service.result();
+        expect(sut).toEqual(FAKE_RESULT);
+        expect(model._props).toEqual({"index": 0, "limit": 3, filter:'filter test'});
     })
 
 })
