@@ -15,7 +15,7 @@ export class ModelUsers_Update {
     }
 
     async result(): Promise<void> {
-        const data = { ...this.data, age: this.data.age.toISOString() };
+        const data = { ...this.data, age: this.data.age?.toISOString() };
         const sqlObj = new SQLQueryUpdateById(this.id + '', 'users', data);
         await this.database.exec(
             sqlObj.sql,
