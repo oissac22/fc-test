@@ -22,3 +22,10 @@ values
 ("Maria", "maria", "*crip:123456", "maria@test.com", "81900000002", "10020030041", "1990-06-01", "Madalena"),
 ("Ana", "ana", "*crip:123456", "ana@test.com", "81900000003", "10020030043", "2000-01-30", "Rejane"),
 ("Hadassa", "hadassa", "*crip:123456", "hadassa@test.com", "81900000004", "10020030044", "2005-06-25", "Raiany");
+
+create table if not exists login_token (
+    id text primary key not null,
+    temp_token text not null,
+    dateInsert timestamp default CURRENT_TIMESTAMP,
+    dateUpdate timestamp default CURRENT_TIMESTAMP
+)
