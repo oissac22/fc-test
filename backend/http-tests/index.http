@@ -69,3 +69,9 @@ Content-Type: application/json
     "name": "Test 1 D"
 }
 ###
+
+GET {{host}}/api/v1/users/7
+###
+
+DELETE {{host}}/api/v1/users/7
+###
