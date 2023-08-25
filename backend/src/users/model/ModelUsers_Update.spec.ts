@@ -16,7 +16,7 @@ describe("ModelUsers_Update class", () => {
             }
         );
         const sut = await model.result();
-        expect(sut).toEqual({id:1});
+        expect(sut).toEqual(undefined);
         expect(database._query).toBe("update users set age=?,cpf=?,email=?,login=?,mather=?,name=?,password=?,phone=?,status=? where id=?");
         expect(database._props).toEqual([FAKE_DATE.toISOString(), "00000000000", "test@test.com", "validlogin", "Mather test", "Name test", "*crip:123456", "81900000000", "active", "4"]);
     })
@@ -27,7 +27,7 @@ describe("ModelUsers_Update class", () => {
             mather:'Mather test', name:'Name test', password:'123456', phone:'81900000000'
         });
         const sut = await model.result();
-        expect(sut).toEqual({id:1});
+        expect(sut).toEqual(undefined);
         expect(database._query).toBe("update users set age=?,cpf=?,email=?,login=?,mather=?,name=?,password=?,phone=? where id=?");
         expect(database._props).toEqual([FAKE_DATE.toISOString(), "00000000000", "test@test.com", "validlogin", "Mather test", "Name test", "*crip:123456", "81900000000", "4"]);
     })

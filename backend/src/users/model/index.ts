@@ -16,7 +16,7 @@ export class ModelUsers implements IModelUsers {
         return new ModelUsers_Insert(data, this.database).result();
     }
     
-    updateUser(id: number, data: IUsersDataInsert): Promise<{ id: number; }> {
+    updateUser(id: number, data: IUsersDataInsert): Promise<void> {
         return new ModelUsers_Update(id, data, this.database).result();
     }
 

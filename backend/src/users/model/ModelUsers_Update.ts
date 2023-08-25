@@ -14,13 +14,12 @@ export class ModelUsers_Update {
             data.password = passwordCrip(data.password);
     }
 
-    async result(): Promise<{ id: number; }> {
+    async result(): Promise<void> {
         const data = { ...this.data, age: this.data.age.toISOString() };
         const sqlObj = new SQLQueryUpdateById(this.id + '', 'users', data);
-        const result = await this.database.exec(
+        await this.database.exec(
             sqlObj.sql,
             sqlObj.propsValues
         );
-        return result;
     }
 }
