@@ -106,6 +106,7 @@ export class ApiExpress implements IApi {
     setup()
     {
         ApiExpress.Api.use(cors({ origin: '*' }))
+        ApiExpress.Api.use(express.json({ inflate: false }))
     }
 
     run() {

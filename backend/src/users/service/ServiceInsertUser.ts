@@ -36,7 +36,7 @@ export class ServiceInsertUser {
             throw new HTTPException(`"${login}" não é um login válido`, HTTPStatus.NOT_ACCEPTABLE, 'notValidLogin');
         if (!/\w{6,}/.test(password))
             throw new HTTPException(`"${password}" não é uma senha válida, a senha deve conter 6 ou mais digitos`, HTTPStatus.NOT_ACCEPTABLE, 'notValidPassword');
-        if (!(age.getTimezoneOffset()))
+        if (!age?.getTimezoneOffset || !(age.getTimezoneOffset()))
             throw new HTTPException(`"${age}" não é uma data de nascimento válida`, HTTPStatus.NOT_ACCEPTABLE, 'notValidAge');
     }
 
