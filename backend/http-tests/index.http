@@ -11,3 +11,6 @@ GET {{host}}/api/v1/users?index=0&limit=10
 
 GET {{host}}/api/v1/users?index=0&limit=10&filter=dass
 ###
+
+GET {{host}}/api/v1/users/4
+###
