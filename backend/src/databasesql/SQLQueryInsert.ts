@@ -9,7 +9,7 @@ export class SQLQueryInsert {
     private get validAttrs() {
         let props: { [key: string]: string | number; } = {};
         Object.entries(this.attrs).map(([key, value]) => {
-            if (value !== '' && value !== null && value !== undefined) {
+            if (value !== null && value !== undefined) {
                 props[key] = value;
             }
         });

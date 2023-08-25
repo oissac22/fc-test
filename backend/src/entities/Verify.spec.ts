@@ -12,6 +12,7 @@ describe('test Verify class', () => {
         expect(Verify.date(new Date("invalid date"))).toBe(false);
         expect(Verify.date("2023/08/25" as any)).toBe(false);
         expect(Verify.date(new Date("2023/08/25"))).toBe(true);
+        expect(Verify.date(new Date("2023-08-25"))).toBe(true);
     })
 
     it('email function', () => {

@@ -2,12 +2,12 @@ import { ILogs } from "../interfaces/ILogs";
 
 export class Logs implements ILogs {
 
-    log(...value: any[]): void {
-        console.log(...value)
+    log(v1:any, ...value: any[]): void {
+        console.log(v1, ...value)
     }
 
-    error(...value: any[]): void {
-        console.error(...value)
+    error(v1:any, ...value: any[]): void {
+        console.error(v1, ...value)
     }
 
 }

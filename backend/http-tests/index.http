@@ -25,6 +25,20 @@ Content-Type: application/json
     "cpf": "000.000.000-00",
     "login": "test",
     "password": "test123",
-    "age": "2023/08/25"
+    "age": "2023-08-25"
+}
+###
+
+POST {{host}}/api/v1/users
+Content-Type: application/json
+
+{
+    "email": "test1@test.com",
+    "phone": "81 900000001",
+    "name": "Test 2",
+    "cpf": "000.000.000-01",
+    "login": "test2",
+    "password": "test123",
+    "age": "2023-08-25"
 }
 ###

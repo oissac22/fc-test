@@ -41,10 +41,27 @@ export class ServiceInsertUser {
             throw new HTTPException(`"${age}" não é uma data de nascimento válida`, HTTPStatus.NOT_ACCEPTABLE, 'notValidAge');
     }
 
+    private exception(e:Error):never
+    {
+        if (/UNIQUE constraint failed: users.cpf/.test(e.message))
+            throw new HTTPException(`Já existe um usuário com o cpf "${this.data.cpf}"`, HTTPStatus.NOT_ACCEPTABLE);
+        if (/UNIQUE constraint failed: users.login/.test(e.message))
+            throw new HTTPException(`Já existe um usuário com o login "${this.data.login}"`, HTTPStatus.NOT_ACCEPTABLE);
+        throw e;
+    }
+
     async result(): Promise<{ id: number; }> {
         this.verifyData();
         this.adjustPhoneDDI();
-        const result = this.modelUsers.insertUser(this.data);
-        return result;
+        try
+        {
+            const result = await this.modelUsers.insertUser(this.data);
+            return result;
+        }
+        catch (e)
+        {
+            this.exception(e);
+        }
     }
 }
+
