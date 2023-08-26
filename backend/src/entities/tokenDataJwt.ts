@@ -6,11 +6,11 @@ export class TokenDataJWT implements ITokenData {
         return jwt.sign(data, key, { expiresIn });
     }
 
-    validateToken(token: string, key: string): unknown {
+    validateToken(token: string, key: string): any {
         return jwt.verify(token, key);
     }
 
-    getDataToken(token: string): unknown {
+    getDataToken(token: string): any {
         return jwt.decode(token);
     }
 }
