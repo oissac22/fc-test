@@ -3,11 +3,11 @@ export interface IServiceLoginLogin {
 }
 
 export interface IServiceLoginLogoff {
-    logoff(login:string, password:string):Promise<void>;
+    logoff(token: string):Promise<void>;
 }
 
 export interface IServiceLoginLogoffEveryMachines {
-    logoffEveryMachines(login:string, password:string):Promise<void>;
+    logoffEveryMachines(token: string):Promise<void>;
 }
 
 export interface IServiceLoginVerifyLoginActived {

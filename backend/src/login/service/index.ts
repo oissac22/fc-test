@@ -3,6 +3,7 @@ import { IServiceLogin } from "../../interfaces/IServiceLogin";
 import { ITokenData } from "../../interfaces/ITokenData";
 import { IModelLogin } from "../../interfaces/IModelLogin";
 import { ServiceLogin_Login } from "./ServiceLogin_Login";
+import { ServiceLogin_Logoff } from "./ServiceLogin_Logoff";
 
 export class ServiceLogin implements IServiceLogin {
     constructor(
@@ -15,11 +16,11 @@ export class ServiceLogin implements IServiceLogin {
         return new ServiceLogin_Login(login, password, this.userService, this.token, this.model).result();
     }
 
-    logoff(login: string, password: string): Promise<void> {
-        throw new Error("Method not implemented.");
+    logoff(token: string): Promise<void> {
+        return new ServiceLogin_Logoff(token, this.model).result();
     }
 
-    logoffEveryMachines(login: string, password: string): Promise<void> {
+    logoffEveryMachines(token: string): Promise<void> {
         throw new Error("Method not implemented.");
     }
 
