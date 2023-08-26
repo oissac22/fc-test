@@ -1,5 +1,3 @@
-
-import { HTTPException } from "../../entities/error";
 import { IModelLogin, IModelLoginData, IModelLoginDataInsert, IModelLoginDataUpdate } from "../../interfaces/IModelLogin";
 import { ISQL } from "../../interfaces/ISQL";
 

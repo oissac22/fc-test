@@ -7,6 +7,7 @@ Api.setup();
 
 Api.get('/test-error', new ControllerTestError())
 
+import './login'
 import './users'
 
 Api.use(new ControllerNotFound())
