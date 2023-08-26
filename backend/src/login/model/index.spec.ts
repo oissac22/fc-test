@@ -36,6 +36,20 @@ describe('ModelLogin class', () => {
         expect(database._props).toEqual(["valid_token"]);
     })
 
+    it('delete login', async () => {
+        const { database, model } = newModelLogin();
+        await model.deleteLogin('long-token');
+        expect(database._query).toBe("delete from login_token where token = ?");
+        expect(database._props).toEqual(["long-token"]);
+    })
+
+    it('delete every logins from user', async () => {
+        const { database, model } = newModelLogin();
+        await model.deleteFullTokenUser(5);
+        expect(database._query).toBe("delete from login_token where user_id = ?");
+        expect(database._props).toEqual([5]);
+    })
+
 })
 
 function newModelLogin()
