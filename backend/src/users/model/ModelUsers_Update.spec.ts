@@ -18,7 +18,11 @@ describe("ModelUsers_Update class", () => {
         const sut = await model.result();
         expect(sut).toEqual(undefined);
         expect(database._query).toBe("update users set age=?,cpf=?,email=?,login=?,mather=?,name=?,password=?,phone=?,status=?,dateUpdate=? where id=?");
-        expect(database._props).toEqual([FAKE_DATE.toISOString(), "00000000000", "test@test.com", "validlogin", "Mather test", "Name test", "*crip:123456", "81900000000", "active", "4"]);
+        let [id, dateUpdate, ...props] = database._props.reverse();
+        props = props.reverse();
+        expect(props).toEqual([FAKE_DATE.toISOString(), "00000000000", "test@test.com", "validlogin", "Mather test", "Name test", "*crip:123456", "81900000000", "active"]);
+        expect(dateUpdate).toMatch(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/);
+        expect(id).toBe("4");
     })
 
     it("update user, without status data", async () => {
@@ -28,8 +32,12 @@ describe("ModelUsers_Update class", () => {
         });
         const sut = await model.result();
         expect(sut).toEqual(undefined);
-        expect(database._query).toBe("update users set age=?,cpf=?,email=?,login=?,mather=?,name=?,password=?,phone=? where id=?");
-        expect(database._props).toEqual([FAKE_DATE.toISOString(), "00000000000", "test@test.com", "validlogin", "Mather test", "Name test", "*crip:123456", "81900000000", "4"]);
+        expect(database._query).toBe("update users set age=?,cpf=?,email=?,login=?,mather=?,name=?,password=?,phone=?,dateUpdate=? where id=?");
+        let [id, dateUpdate, ...props] = database._props.reverse();
+        props = props.reverse();
+        expect(props).toEqual([FAKE_DATE.toISOString(), "00000000000", "test@test.com", "validlogin", "Mather test", "Name test", "*crip:123456", "81900000000"]);
+        expect(dateUpdate).toMatch(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/);
+        expect(id).toBe("4");
     })
 
 })
@@ -44,7 +52,7 @@ function newModelUsers_Update(id:number, data: IUsersDataInsert)
 
 class FakeDatabase implements ISQL {
     _query:any = null;
-    _props:any = null;
+    _props:any[] = null;
     list(query: string, props?: (string | number)[]): Promise<any>
     {
         throw new Error("Method not implemented.");
