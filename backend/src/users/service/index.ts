@@ -12,8 +12,6 @@ export class ServiceUsers implements IServicesUsers {
         private readonly modelUsers:IModelUsers
     ){}
 
-    // --------------------------
-
     insertUser(data: IUsersDataInsert): Promise<{ id: number; }> {
         return new ServiceInsertUser(data, this.modelUsers).result();
     }

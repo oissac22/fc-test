@@ -1,13 +1,18 @@
-import { IServicesUsers } from "../../interfaces/IServicesUsers";
+import { IServicesUsersDataByPassword } from "../../interfaces/IServicesUsers";
 import { IServiceLogin } from "../../interfaces/IServiceLogin";
+import { ITokenData } from "../../interfaces/ITokenData";
+import { IModelLogin } from "../../interfaces/IModelLogin";
+import { ServiceLogin_Login } from "./ServiceLogin_Login";
 
 export class ServiceLogin implements IServiceLogin {
     constructor(
-        private readonly userService:IServicesUsers
+        private readonly userService:IServicesUsersDataByPassword,
+        private readonly token: ITokenData,
+        private readonly model: IModelLogin
     ){}
 
-    login(login: string, password: string): Promise<{ token: string; }> {
-        throw new Error("Method not implemented.");
+    async login(login: string, password: string): Promise<{ token: string; }> {
+        return new ServiceLogin_Login(login, password, this.userService, this.token, this.model).result();
     }
 
     logoff(login: string, password: string): Promise<void> {
@@ -22,3 +27,5 @@ export class ServiceLogin implements IServiceLogin {
         throw new Error("Method not implemented.");
     }
 }
+
+
