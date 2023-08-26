@@ -25,7 +25,7 @@ describe('ModelLogin class', () => {
     it('update login token', async () => {
         const { database, model } = newModelLogin();
         await model.updateLogin('valid_token', { refresh_token:'refresh-token', dateUpdate: FAKE_DATE });
-        expect(database._query).toBe("update login_token set refresh_token = ?, dateUpdate = ? where token = ?");
+        expect(database._query).toBe("update login_token set refresh_token = ?, dateUpdate = ? where refresh_token = ?");
         expect(database._props).toEqual(["refresh-token", FAKE_DATE.toISOString(), 'valid_token']);
     })
 
@@ -38,9 +38,9 @@ describe('ModelLogin class', () => {
 
     it('delete login', async () => {
         const { database, model } = newModelLogin();
-        await model.deleteLogin('long-token');
-        expect(database._query).toBe("delete from login_token where token = ?");
-        expect(database._props).toEqual(["long-token"]);
+        await model.deleteLogin('short-token');
+        expect(database._query).toBe("delete from login_token where refresh_token = ?");
+        expect(database._props).toEqual(["short-token"]);
     })
 
     it('delete every logins from user', async () => {

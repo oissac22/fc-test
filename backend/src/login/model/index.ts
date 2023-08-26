@@ -4,8 +4,8 @@ import { IModelLogin, IModelLoginData, IModelLoginDataInsert, IModelLoginDataUpd
 import { ISQL } from "../../interfaces/ISQL";
 
 const SQL_INSERT = "insert into login_token (user_id, token, refresh_token) values (?, ?, ?)";
-const SQL_UPDATE = "update login_token set refresh_token = ?, dateUpdate = ? where token = ?";
-const SQL_DELETE = "delete from login_token where token = ?";
+const SQL_UPDATE = "update login_token set refresh_token = ?, dateUpdate = ? where refresh_token = ?";
+const SQL_DELETE = "delete from login_token where refresh_token = ?";
 const SQL_DELETE_FULL = "delete from login_token where user_id = ?";
 const SQL_GET_LOGIN = "select * from login_token where refresh_token = ?";
 
