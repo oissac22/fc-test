@@ -5,6 +5,7 @@ import { IModelLogin } from "../../interfaces/IModelLogin";
 import { ServiceLogin_Login } from "./ServiceLogin_Login";
 import { ServiceLogin_Logoff } from "./ServiceLogin_Logoff";
 import { ServiceLogin_LogoffEveryMachines } from "./ServiceLogin_LogoffEveryMachines";
+import { ServiceLogin_VerifyLoginActived } from "./ServiceLogin_VerifyLoginActived";
 
 export class ServiceLogin implements IServiceLogin {
     constructor(
@@ -25,9 +26,7 @@ export class ServiceLogin implements IServiceLogin {
         return new ServiceLogin_LogoffEveryMachines(token, this.model).result();
     }
 
-    verifyLoginActived(token: string): Promise<boolean> {
-        throw new Error("Method not implemented.");
+    verifyLoginActived(token: string): Promise<{ new_refresh_token:string }> {
+        return new ServiceLogin_VerifyLoginActived(token, this.token, this.model).result();
     }
 }
-
-

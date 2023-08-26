@@ -11,7 +11,7 @@ export interface IServiceLoginLogoffEveryMachines {
 }
 
 export interface IServiceLoginVerifyLoginActived {
-    verifyLoginActived(token:string):Promise<boolean>;
+    verifyLoginActived(token:string):Promise<{ new_refresh_token:string }>;
 }
 
 export interface IServiceLogin extends IServiceLoginLogin, IServiceLoginLogoff, IServiceLoginLogoffEveryMachines, IServiceLoginVerifyLoginActived {}
