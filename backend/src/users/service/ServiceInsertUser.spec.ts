@@ -127,7 +127,7 @@ class FakeModels implements IModelUsers {
     listUsers(props: IUsersListFilter): Promise<IUsersDataList[]> {
         throw new Error("Method not implemented.")
     }
-    datailUser(id: number): Promise<IUsersDataNoPassword> {
+    detailUser(id: number): Promise<IUsersDataNoPassword> {
         throw new Error("Method not implemented.")
     }
     userByPassword(login: string, password: string): Promise<IUsersDataNoPassword> {

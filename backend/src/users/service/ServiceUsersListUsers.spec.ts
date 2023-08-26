@@ -62,7 +62,7 @@ class FakeModelUsers implements IModelUsers {
         this._props = props;
         return FAKE_RESULT;
     }
-    datailUser(id: number): Promise<IUsersDataNoPassword> {
+    detailUser(id: number): Promise<IUsersDataNoPassword> {
         throw new Error("Method not implemented.")
     }
     userByPassword(login: string, password: string): Promise<IUsersDataNoPassword> {

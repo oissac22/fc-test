@@ -28,7 +28,7 @@ export class ModelUsers implements IModelUsers {
         return new ModelUsers_ListUsers(props, this.database).result();
     }
 
-    datailUser(id: number): Promise<IUsersDataNoPassword> {
+    detailUser(id: number): Promise<IUsersDataNoPassword> {
         return new ModelUsers_dataUserById(id, this.database).result();
     }
 

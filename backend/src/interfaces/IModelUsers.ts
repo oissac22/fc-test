@@ -26,20 +26,28 @@ export type IUsersDataUpdate = Partial<Omit<IUsersDataInsert, "id">>
 export type IUsersDataList = Pick<IUsersData, "id" | "name" | "email" | "phone">
 export type IUsersDataNoPassword = Omit<IUsersData, "login" | "password">
 
-export interface IModelUsers {
+export interface IModelUsersInsert {
     insertUser(data:IUsersDataInsert):Promise<{ id:number }>;
+}
+
+export interface IModelUsersUpdate {
     updateUser(id:number, data:IUsersDataUpdate):Promise<void>;
+}
+
+export interface IModelUsersDelete {
     deleteUser(id:number):Promise<void>;
+}
+
+export interface IModelUsersList {
     listUsers(props: IUsersListFilter):Promise<IUsersDataList[]>;
-    datailUser(id:number):Promise<IUsersDataNoPassword>;
+}
+
+export interface IModelUsersDetail {
+    detailUser(id:number):Promise<IUsersDataNoPassword>;
+}
+
+export interface IModelUsersDataByPassword {
     userByPassword(login:string, password:string):Promise<IUsersDataNoPassword>
 }
 
-export interface IServicesUsers {
-    insertUser(data:IUsersDataInsert):Promise<{ id:number }>;
-    updateUser(id:number, data:IUsersDataUpdate):Promise<void>;
-    deleteUser(id:number):Promise<void>;
-    listUsers(props: IUsersListFilter):Promise<IUsersDataList[]>;
-    datailUser(id:number):Promise<IUsersDataNoPassword>;
-    userByPassword(login:string, password:string):Promise<IUsersDataNoPassword>
-}
+export interface IModelUsers extends IModelUsersInsert, IModelUsersUpdate, IModelUsersDelete, IModelUsersList, IModelUsersDetail, IModelUsersDataByPassword {}

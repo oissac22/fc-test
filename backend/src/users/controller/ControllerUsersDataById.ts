@@ -1,5 +1,5 @@
 import { IController, IControllerProps, TControllerExec } from '../../interfaces/Controller';
-import { IServicesUsers } from '../../interfaces/IModelUsers';
+import { IServicesUsers } from "../../interfaces/IServicesUsers";
 
 
 export class ControllerUsersDataById implements IController {
