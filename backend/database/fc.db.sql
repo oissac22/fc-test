@@ -41,4 +41,4 @@ create table if not exists login_token (
 
 CREATE UNIQUE INDEX if not exists idx_login_token_token ON login_token (token);
 CREATE UNIQUE INDEX if not exists idx_login_token_refresh_token ON login_token (refresh_token);
-CREATE UNIQUE INDEX if not exists idx_login_token_user_id ON login_token (user_id);
+CREATE INDEX if not exists idx_login_token_user_id ON login_token (user_id);
