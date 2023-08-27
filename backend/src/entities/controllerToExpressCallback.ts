@@ -10,7 +10,6 @@ export function controllerToExpressCallback(controller:IController)
             const { body, headers, params, query, url } = req;
             const result = await controller.exec({ body, headers, params, query, url });
             res.status(result.status);
-            console.log('result.headers :>> ', result.headers);
             if (result.headers)
                 res.set(result.headers);
             if (result.data)
