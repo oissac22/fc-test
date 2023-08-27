@@ -1,3 +1,5 @@
+import { IUsersDataNoPassword } from "./IModelUsers";
+
 export interface IServiceLoginLogin {
     login(login:string, password:string):Promise<{ token:string }>;
 }
@@ -14,4 +16,8 @@ export interface IServiceLoginVerifyLoginActived {
     verifyLoginActived(token:string):Promise<null | { new_refresh_token:string }>;
 }
 
-export interface IServiceLogin extends IServiceLoginLogin, IServiceLoginLogoff, IServiceLoginLogoffEveryMachines, IServiceLoginVerifyLoginActived {}
+export interface IServiceLoginUserDataById {
+    userDataByToken(token:string):Promise<null | IUsersDataNoPassword>;
+}
+
+export interface IServiceLogin extends IServiceLoginLogin, IServiceLoginLogoff, IServiceLoginLogoffEveryMachines, IServiceLoginVerifyLoginActived, IServiceLoginUserDataById {}
