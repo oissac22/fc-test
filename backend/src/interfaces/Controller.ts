@@ -1,7 +1,9 @@
 export type TControllerExec = {
     status: number,
     data?: any,
-    file?: any
+    file?: any,
+    next?: boolean,
+    headers?: any
 }
 
 export interface IControllerProps {

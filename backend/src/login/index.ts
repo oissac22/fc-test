@@ -1,4 +1,5 @@
 import { Api } from "../api";
+import { EventRequest } from "../api/EventRequest";
 import { Database } from "../databasesql";
 import { TokenDataJWT } from "../entities/tokenDataJwt";
 import { ModelUsers } from "../users/model";
@@ -15,5 +16,16 @@ const token = new TokenDataJWT();
 const model = new ModelLogin(Database);
 const service = new ServiceLogin(userService, token, model)
 
-Api.post('/api/v1/login', new ControllerLoginExecLogin(service))
+new EventRequest().addEvent('beforerequest', (data) => {
+    const { method, url, headers } = data;
+    if (
+        (url.indexOf("/api/v1/login") === 0)
+        && (method.toLowerCase() !== 'post')
+    ) {
+        service.verifyLoginActived(headers?.key)
+    }
+})
+
+Api.post('/api/v1/login', new ControllerLoginExecLogin(service));
+
 Api.delete('/api/v1/login/:token', new ControllerLoginLogoff(service))

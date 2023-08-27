@@ -26,7 +26,7 @@ export class ServiceLogin implements IServiceLogin {
         return new ServiceLogin_LogoffEveryMachines(token, this.model).result();
     }
 
-    verifyLoginActived(token: string): Promise<{ new_refresh_token:string }> {
+    verifyLoginActived(token: string): Promise<null | { new_refresh_token:string }> {
         return new ServiceLogin_VerifyLoginActived(token, this.token, this.model).result();
     }
 }
