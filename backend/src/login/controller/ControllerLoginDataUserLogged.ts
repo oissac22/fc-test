@@ -9,7 +9,6 @@ export class ControllerLoginDataUserLogged implements IController {
 
     async exec(props: IControllerProps): Promise<TControllerExec> {
         const { key = '' } = props.headers || {};
-        console.log('key :>> ', key);
         const user = await this.service.userDataByToken(key) || {};
         return {
             status:200,
