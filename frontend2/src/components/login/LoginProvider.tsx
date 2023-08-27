@@ -7,7 +7,7 @@ interface ILoginProviderData {
     logged: IIsLogged,
     verifyLogin: () => Promise<void>,
     userData: IUsersDataNoPassword | null,
-    error: string
+    error: string,
 }
 
 const Context = createContext({} as ILoginProviderData);
@@ -29,10 +29,9 @@ export function LoginProvider({children}:any)
                 setUserData(data);
                 return setLogged('yes');
             }).catch((err) => {
-                console.log('error :>> ', error);
-                if (err.status === 401)
+                if (err.response.status === 401)
                     return setLogged('no');
-                setError(err.message)
+                setError(err.response.data || err.message)
             }).finally(() => {
                 setLoadding(false);
             });

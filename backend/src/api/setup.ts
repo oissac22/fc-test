@@ -3,12 +3,7 @@ import cors from 'cors';
 import express from 'express'
 
 Api.use(
-    cors({
-        origin: (origin, callback) => {
-            callback(null, true);
-        },
-        credentials: true
-    })
+    cors({ origin: '*' })
 );
 
 Api.use(express.json({ inflate:false }))

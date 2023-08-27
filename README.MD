@@ -10,6 +10,8 @@
 
 - POST /api/v1/login
   - login
+- GET /api/v1/login/refresh
+  - refresh and return new token if necessary, 
 - GET /api/v1/login
   - login data and verify
 - DELETE /api/v1/login

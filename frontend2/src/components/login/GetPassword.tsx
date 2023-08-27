@@ -23,7 +23,8 @@ export function GetPassword()
         setLoadding(true);
         e.preventDefault();
         Api.post('/api/v1/login', data.current)
-            .then(() => {
+            .then((data) => {
+                Api.key = data.key;
                 verifyLogin();
             }).catch((err) => {
                 window.alert(err.response?.data?.error || err.response?.data || err.message);

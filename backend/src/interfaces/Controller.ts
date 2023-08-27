@@ -4,7 +4,6 @@ export type TControllerExec = {
     file?: any,
     next?: boolean,
     headers?: any,
-    cookies?: {[key:string]:any}
 }
 
 export interface IControllerProps {
@@ -13,7 +12,6 @@ export interface IControllerProps {
     body?:any,
     headers?:any,
     url?:string,
-    cookies?: {[key:string]:any}
 }
 
 export interface IController {

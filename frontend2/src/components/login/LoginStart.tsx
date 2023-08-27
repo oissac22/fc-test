@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { useLoginProvider } from "./LoginProvider"
 import { CenterItem } from "../centerItem";
 
@@ -9,7 +9,7 @@ export function LoginStart()
     useEffect(() => {
         if (logged === 'not-verifyed')
             verifyLogin();
-    },[logged, verifyLogin])
+    },[logged])
 
     if(logged !== 'not-verifyed')
         return null;

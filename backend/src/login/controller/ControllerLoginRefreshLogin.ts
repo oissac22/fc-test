@@ -1,7 +1,7 @@
 import { IController, IControllerProps, TControllerExec } from "../../interfaces/Controller";
 import { IServiceLogin } from "../../interfaces/IServiceLogin";
 
-export class ControllerLoginVerifyIfLogged implements IController {
+export class ControllerLoginRefreshLogin implements IController {
 
     constructor(
         private readonly service: IServiceLogin
@@ -9,10 +9,11 @@ export class ControllerLoginVerifyIfLogged implements IController {
 
     async exec(props: IControllerProps): Promise<TControllerExec> {
         const { key = '' } = props.headers || {};
-        await this.service.verifyLoginActived(key) || {};
+        const { new_refresh_token } = await this.service.verifyLoginActived(key) || {};
+        props.headers.key = new_refresh_token || key;
         return {
             status:200,
-            next: true,
+            data: new_refresh_token ? { key: new_refresh_token } : null
         }
     }
 
