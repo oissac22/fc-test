@@ -2,7 +2,7 @@ import { Login } from './components/login'
 import { PagesRouter } from './pages'
 import './style/global.css'
 import './style/components.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 function App() {
 
