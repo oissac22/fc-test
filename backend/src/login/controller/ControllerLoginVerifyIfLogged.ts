@@ -10,6 +10,7 @@ export class ControllerLoginVerifyIfLogged implements IController {
     async exec(props: IControllerProps): Promise<TControllerExec> {
         const { key = '' } = props.headers || {};
         const { new_refresh_token } = await this.service.verifyLoginActived(key) || {};
+        props.headers.key = new_refresh_token || key;
         return {
             status:200,
             next: true,

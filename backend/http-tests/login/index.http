@@ -10,14 +10,16 @@ Content-Type: application/json
 ###
 # examples tokens return 2023-08-27 11:24
 
+@key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkPDoXNzaW8iLCJpYXQiOjE2OTMxNTM1MzYsImV4cCI6MTY5MzE1NDEzNn0._c1Jz35Gsa8NgMu0M6b3rWvrnUlgzvIf6GodARvL_v8
+
+GET {{host}}/api/v1/login/
+key: {{key}}
+###
+
 DELETE {{host}}/api/v1/login/
-key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkPDoXNzaW8iLCJpYXQiOjE2OTMxNDkxMzcsImV4cCI6MTY5MzE0OTczN30.Xond44T2LAbpu3aglXOKo-o7HbOZ37bDOAr37fl6LQI
+key: {{key}}
 ###
 
 DELETE {{host}}/api/v1/login/every
-key:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkPDoXNzaW8iLCJpYXQiOjE2OTMxNDk3OTYsImV4cCI6MTY5MzE1MDM5Nn0.VoSg2HrDDFUuiTuT1QE2mCtNqAfdMvOZSDKFs0hSeDg
-###
-
-GET {{host}}/api/v1/login/
-key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkPDoXNzaW8iLCJpYXQiOjE2OTMxNDkxMzcsImV4cCI6MTY5MzE0OTczN30.Xond44T2LAbpu3aglXOKo-o7HbOZ37bDOAr37fl6LQI
+key: {{key}}
 ###
