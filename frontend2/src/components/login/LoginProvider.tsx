@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 import { IIsLogged } from "../interfaces/IIsLogged";
 import { Api } from "../../entities/api";
 import { IUsersDataNoPassword } from "../interfaces/IModelUsers";
@@ -19,11 +19,6 @@ export function LoginProvider({children}:any)
     const [error, setError] = useState<string>('');
     const [loadding, setLoadding] = useState<boolean>(false);
 
-    useEffect(() => {
-        if(error)
-            console.log('error :>> ', error);
-    },[error])
-
     const verifyLogin = useCallback(async () => {
         if (loadding)
             return;
@@ -34,6 +29,7 @@ export function LoginProvider({children}:any)
                 setUserData(data);
                 return setLogged('yes');
             }).catch((err) => {
+                console.log('error :>> ', error);
                 if (err.status === 401)
                     return setLogged('no');
                 setError(err.message)
