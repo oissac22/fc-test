@@ -1,6 +1,7 @@
 @host=http://localhost:4444
 
 GET {{host}}/api/v1/users?index=0&limit=10
+key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkPDoXNzaW8iLCJpYXQiOjE2OTMxNDg4NDIsImV4cCI6MTY5MzE0OTQ0Mn0.TJbGjh0OvM31K4AHj4t9nPejt8sg1ChLpA-4cSO-ZTE
 ###
 
 GET {{host}}/api/v1/users?index=0&limit=10&filter=dass

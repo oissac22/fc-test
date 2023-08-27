@@ -6,11 +6,15 @@ import { ControllerUsersDataById } from './controller/ControllerUsersDataById';
 import { ModelUsers } from "./model";
 import { ServiceUsers } from "./service";
 import { controllerToExpressCallback } from '../entities/controllerToExpressCallback';
+import { ControllerLoginVerifyIfLogged } from '../login/controller/ControllerLoginVerifyIfLogged';
+import { featureServiceLogin } from '../login/featureServiceLogin';
 
 const model = new ModelUsers(Database)
 const service = new ServiceUsers(model)
 
 const routerExpress = express.Router();
+
+routerExpress.use(controllerToExpressCallback( new ControllerLoginVerifyIfLogged(featureServiceLogin) ))
 
 routerExpress.get('/', controllerToExpressCallback( new ControllerUsersList(service) ))
 routerExpress.get('/:id', controllerToExpressCallback( new ControllerUsersDataById(service) ))
