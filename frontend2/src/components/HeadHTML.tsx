@@ -1,4 +1,5 @@
-import Head from "next/head"
+import { useEffect } from 'react'
+
 
 interface IHeadHTMLProps {
     titleValue?:string
@@ -6,13 +7,10 @@ interface IHeadHTMLProps {
 
 export function HeadHTML({ titleValue }:IHeadHTMLProps)
 {
-    const realTitle = `Usuários${ titleValue ? ` - ${titleValue}` : '' }`;
-    return <Head>
-        <title>
-            {realTitle}
-        </title>
-        <meta name="description" content="Administrador de usuários" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-    </Head>
+    useEffect(() => {
+        const realTitle = `Usuários${ titleValue ? ` - ${titleValue}` : '' }`;
+        document.title = realTitle;
+    },[titleValue])
+
+    return null;
 }
