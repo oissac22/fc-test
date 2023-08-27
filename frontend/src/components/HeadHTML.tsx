@@ -1,14 +1,15 @@
 import Head from "next/head"
 
 interface IHeadHTMLProps {
-    title?:string
+    titleValue?:string
 }
 
-export function HeadHTML({ title }:IHeadHTMLProps)
+export function HeadHTML({ titleValue }:IHeadHTMLProps)
 {
+    const realTitle = `Usuários${ titleValue ? ` - ${titleValue}` : '' }`;
     return <Head>
         <title>
-            Usuários{ title ? ` - ${title}` : '' }
+            {realTitle}
         </title>
         <meta name="description" content="Administrador de usuários" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
