@@ -1,15 +1,17 @@
 import 'dotenv/config'
+import { PORT } from './config';
 import { Api } from "./api";
 import { ControllerNotFound } from "./not-found";
 import { ControllerTestError } from "./test-error";
+import { controllerToExpressCallback } from './entities/controllerToExpressCallback';
 
-Api.setup();
-
-Api.get('/test-error', new ControllerTestError())
+Api.get('/test-error', controllerToExpressCallback((new ControllerTestError())))
 
 import './login'
 import './users'
 
-Api.use(new ControllerNotFound())
+Api.use(controllerToExpressCallback(new ControllerNotFound()))
 
-Api.run();
+Api.listen(PORT, () => {
+    console.log(`RUN IN http://localhost:${PORT}`)
+});

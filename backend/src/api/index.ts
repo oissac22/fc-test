@@ -1,6 +1,7 @@
-import { Logs } from '../entities/logs';
-import { IApi } from '../interfaces/Api';
-import { ApiExpress } from './apiExpress';
+import express from 'express'
 
 
-export const Api:IApi = new ApiExpress(new Logs());
+export const Api = express()
+
+import './setup'
+import './routers'

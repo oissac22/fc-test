@@ -1,7 +1,8 @@
 import { Api } from "../api";
-import { EventRequest } from "../api/EventRequest";
 import { Database } from "../databasesql";
+import { controllerToExpressCallback } from "../entities/controllerToExpressCallback";
 import { TokenDataJWT } from "../entities/tokenDataJwt";
+import express from 'express'
 import { ModelUsers } from "../users/model";
 import { ServiceUsers } from "../users/service";
 import { ControllerLoginLogoff } from "./controller";
@@ -16,16 +17,9 @@ const token = new TokenDataJWT();
 const model = new ModelLogin(Database);
 const service = new ServiceLogin(userService, token, model)
 
-new EventRequest().addEvent('beforerequest', (data) => {
-    const { method, url, headers } = data;
-    if (
-        (url.indexOf("/api/v1/login") === 0)
-        && (method.toLowerCase() !== 'post')
-    ) {
-        service.verifyLoginActived(headers?.key)
-    }
-})
+const routerExpress = express.Router();
 
-Api.post('/api/v1/login', new ControllerLoginExecLogin(service));
+routerExpress.post('/', controllerToExpressCallback(new ControllerLoginExecLogin(service)));
+routerExpress.delete('/:token', controllerToExpressCallback(new ControllerLoginLogoff(service)))
 
-Api.delete('/api/v1/login/:token', new ControllerLoginLogoff(service))
+Api.use('/api/v1/login', routerExpress)
