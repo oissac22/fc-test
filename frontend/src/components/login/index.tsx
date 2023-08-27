@@ -11,7 +11,7 @@ export function Login({ children }:ILoginProps)
 {
     return <LoginProvider>
         <LoginStart />
-        <ChildrenShow children={{children}} />
+        <ChildrenShow children={children} />
         <GetPassword />
     </LoginProvider>
 }

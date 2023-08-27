@@ -18,7 +18,8 @@ export function LoginProvider({children}:any)
 
     const verifyLogin = useCallback(async () => {
         Api.get('/api/v1/login')
-            .then(() => {
+            .then((userData) => {
+                setUserData(userData);
                 return setLogged('yes');
             }).catch((err) => {
                 if (err.response?.status === 401)

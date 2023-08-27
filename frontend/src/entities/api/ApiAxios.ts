@@ -43,28 +43,28 @@ export class ApiAxios implements IApi {
 
     async get(url: string, props: any = {}): Promise<any>
     {
-        const result = await AxiosApi.get(url, {...props, key:this.key});
+        const result = await AxiosApi.get(url, {...props, headers: {key:this.key}});
         this.adjustKey(result.headers);
         return result.data;
     }
 
     async delete(url: string, props: any = {}): Promise<any>
     {
-        const result = await AxiosApi.delete(url, {...props, key:this.key});
+        const result = await AxiosApi.delete(url, {...props, headers: {key:this.key}});
         this.adjustKey(result.headers);
         return result.data;
     }
 
     async post(url: string, data: any, props: any = {}): Promise<any>
     {
-        const result = await AxiosApi.post(url, data, {...props, key:this.key});
+        const result = await AxiosApi.post(url, data, {...props, headers: {key:this.key}});
         this.adjustKey(result.headers);
         return result.data;
     }
 
     async put(url: string, data: any, props: any = {}): Promise<any>
     {
-        const result = await AxiosApi.put(url, data, {...props, key:this.key});
+        const result = await AxiosApi.put(url, data, {...props, headers: {key:this.key}});
         this.adjustKey(result.headers);
         return result.data;
     }

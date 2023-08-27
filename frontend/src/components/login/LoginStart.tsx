@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLoginProvider } from "./LoginProvider"
+import { CenterItem } from "../centerItem";
 
 export function LoginStart()
 {
@@ -13,7 +14,7 @@ export function LoginStart()
     if(logged !== 'not-verifyed')
         return null;
 
-    return <div>
+    return <CenterItem>
         Iniciando...
-    </div>
+    </CenterItem>
 }
