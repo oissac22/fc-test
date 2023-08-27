@@ -18,10 +18,12 @@ export function controllerToExpressCallback(controller:IController)
                 res.sendFile(result.file);
             else if (result.next)
                 next();
+            else
+                res.send('');
         } catch (e) {
+            new Logs().error(e);
             if (e instanceof HTTPException)
                 res.status(e.status).json( { error:e.message } );
-            new Logs().error(e);
         }
     }
 }

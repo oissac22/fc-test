@@ -1,11 +1,13 @@
 import { IModelLogin, IModelLoginData, IModelLoginDataInsert, IModelLoginDataUpdate } from "../../interfaces/IModelLogin";
 import { ISQL } from "../../interfaces/ISQL";
 
-const SQL_INSERT = "insert into login_token (user_id, token, refresh_token) values (?, ?, ?)";
-const SQL_UPDATE = "update login_token set refresh_token = ?, dateUpdate = ? where refresh_token = ?";
-const SQL_DELETE = "delete from login_token where refresh_token = ?";
-const SQL_DELETE_FULL = "delete from login_token where user_id = ?";
-const SQL_GET_LOGIN = "select * from login_token where refresh_token = ?";
+const TABLE = 'login_token';
+
+const SQL_INSERT = `insert into ${TABLE} (user_id, token, refresh_token) values (?, ?, ?)`;
+const SQL_UPDATE = `update ${TABLE} set refresh_token = ?, dateUpdate = ? where refresh_token = ?`;
+const SQL_DELETE = `delete from ${TABLE} where refresh_token = ?`;
+const SQL_DELETE_FULL = `delete from ${TABLE} where user_id = ?`;
+const SQL_GET_LOGIN = `select * from ${TABLE} where refresh_token = ?`;
 
 
 export class ModelLogin implements IModelLogin {
