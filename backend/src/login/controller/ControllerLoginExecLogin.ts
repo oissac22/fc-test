@@ -13,7 +13,7 @@ export class ControllerLoginExecLogin implements IController {
         const result = await this.service.login(login, password);
         return {
             status: 200,
-            data: result
+            cookies: { key: result.token }
         };
     }
 

@@ -3,7 +3,8 @@ export type TControllerExec = {
     data?: any,
     file?: any,
     next?: boolean,
-    headers?: any
+    headers?: any,
+    cookies?: {[key:string]:any}
 }
 
 export interface IControllerProps {
@@ -11,7 +12,8 @@ export interface IControllerProps {
     query?:any,
     body?:any,
     headers?:any,
-    url?:string
+    url?:string,
+    cookies?: {[key:string]:any}
 }
 
 export interface IController {

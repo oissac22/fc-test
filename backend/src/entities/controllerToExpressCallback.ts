@@ -8,8 +8,8 @@ export function controllerToExpressCallback(controller:IController)
 {
     return async (req:Request, res:Response, next:NextFunction) => {
         try {
-            const { body, headers, params, query, url } = req;
-            const result = await controller.exec({ body, headers, params, query, url });
+            const { body, headers, params, query, url, cookies } = req;
+            const result = await controller.exec({ body, headers, params, query, url, cookies });
             res.status(result.status);
             // res.header("Authorization", "Cássio S C");
             // res.set("Authorization", "Cássio S C");
@@ -20,6 +20,10 @@ export function controllerToExpressCallback(controller:IController)
             //     } )
             // }
             res.set({...result.headers, Authorization: "Cássio S C"});
+            if (result.cookies)
+                Object.entries(([key, value]) => {
+                    res.cookie(key, value);
+                })
             if (result.data)
                 res.send(result.data);
             else if (result.file)

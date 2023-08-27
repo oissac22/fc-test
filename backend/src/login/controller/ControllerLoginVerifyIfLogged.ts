@@ -14,7 +14,7 @@ export class ControllerLoginVerifyIfLogged implements IController {
         return {
             status:200,
             next: true,
-            headers: new_refresh_token ? { "x-access-key":new_refresh_token } : null
+            cookies: new_refresh_token ? { "key": new_refresh_token } : null
         }
     }
 
