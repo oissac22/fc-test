@@ -1,6 +1,5 @@
 import { Api } from "../api";
 import { Database } from "../databasesql";
-import { controllerToExpressCallback } from "../entities/controllerToExpressCallback";
 import { TokenDataJWT } from "../entities/tokenDataJwt";
 import express from 'express'
 import { ModelUsers } from "../users/model";
@@ -10,6 +9,7 @@ import { ControllerLoginExecLogin } from "./controller/ControllerLoginExecLogin"
 import { ModelLogin } from "./model";
 import { ServiceLogin } from "./service";
 import { ControllerLoginVerifyIfLogged } from "./controller/ControllerLoginVerifyIfLogged";
+import { controllerToExpressCallback } from "../entities/controllerToExpressCallback";
 
 const modelUsers = new ModelUsers(Database);
 const userService = new ServiceUsers(modelUsers)
