@@ -3,7 +3,8 @@ import { Database } from "../databasesql";
 import { TokenDataJWT } from "../entities/tokenDataJwt";
 import { ModelUsers } from "../users/model";
 import { ServiceUsers } from "../users/service";
-import { ControllerLoginExecLogin } from "./controller";
+import { ControllerLoginLogoff } from "./controller";
+import { ControllerLoginExecLogin } from "./controller/ControllerLoginExecLogin";
 import { ModelLogin } from "./model";
 import { ServiceLogin } from "./service";
 
@@ -15,3 +16,4 @@ const model = new ModelLogin(Database);
 const service = new ServiceLogin(userService, token, model)
 
 Api.post('/api/v1/login', new ControllerLoginExecLogin(service))
+Api.delete('/api/v1/login/:token', new ControllerLoginLogoff(service))
