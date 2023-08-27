@@ -29,3 +29,10 @@ button.a {
     background-color: transparent;
     text-decoration: underline;
 }
+
+p {
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 2rem;
+}
