@@ -1,21 +1,26 @@
 import Axios from 'axios';
 import { IApi } from "@/components/interfaces/IApi";
+import { API_URI } from '@/config';
 
 const KEY_STORAGE_NAME = 'HNgsVIOtKh';
 
 const AxiosApi = Axios.create({
-    baseURL:'',
+    baseURL: API_URI,
 })
 
 export class ApiAxios implements IApi {
     protected keyValue:string = '';
+    private started:boolean = false;
 
-    constructor(){
-        this.keyValue = localStorage.getItem(KEY_STORAGE_NAME) || '';
-    }
+    constructor(){}
 
     private get key()
     {
+        if (!this.started)
+        {
+            this.keyValue = localStorage.getItem(KEY_STORAGE_NAME) || '';
+            this.started = true;
+        }
         return this.keyValue;
     }
 
