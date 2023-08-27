@@ -9,6 +9,7 @@ import { ControllerLoginLogoff } from "./controller";
 import { ControllerLoginExecLogin } from "./controller/ControllerLoginExecLogin";
 import { ModelLogin } from "./model";
 import { ServiceLogin } from "./service";
+import { ControllerLoginVerifyIfLogged } from "./controller/ControllerLoginVerifyIfLogged";
 
 const modelUsers = new ModelUsers(Database);
 const userService = new ServiceUsers(modelUsers)
@@ -20,6 +21,9 @@ const service = new ServiceLogin(userService, token, model)
 const routerExpress = express.Router();
 
 routerExpress.post('/', controllerToExpressCallback(new ControllerLoginExecLogin(service)));
-routerExpress.delete('/:token', controllerToExpressCallback(new ControllerLoginLogoff(service)))
+
+routerExpress.use(controllerToExpressCallback(new ControllerLoginVerifyIfLogged(service)));
+
+routerExpress.delete('/', controllerToExpressCallback(new ControllerLoginLogoff(service)))
 
 Api.use('/api/v1/login', routerExpress)
