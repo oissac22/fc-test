@@ -1,4 +1,4 @@
-import { KEY_LOGIN_SHORT_TIME, TOKEN_LONG_TIME_EXPIRE, TOKEN_SHORT_TIME_EXPIRE } from "../../config";
+import { KEY_LOGIN_LONG_TIME, KEY_LOGIN_SHORT_TIME, TOKEN_LONG_TIME_EXPIRE, TOKEN_SHORT_TIME_EXPIRE } from "../../config";
 import { HTTPException, HTTPStatus } from "../../entities/error";
 import { IModelLogin, IModelLoginData, IModelLoginDataInsert, IModelLoginDataUpdate } from "../../interfaces/IModelLogin";
 import { ITokenData } from "../../interfaces/ITokenData";
@@ -31,7 +31,7 @@ describe('ServiceLogin_VerifyLoginActived class', () => {
         ]);
         expect(tokenClass._props).toEqual([
             {"key": KEY_LOGIN_SHORT_TIME, "token": VALID_TOKEN},
-            {"key": TOKEN_LONG_TIME_EXPIRE, "token": VALID_LONG_TOKEN},
+            {"key": KEY_LOGIN_LONG_TIME, "token": VALID_LONG_TOKEN},
             {"data": { id: FAKE_USER_ID, name: FAKE_USER_NAME }, "expiresIn": TOKEN_SHORT_TIME_EXPIRE, "key": KEY_LOGIN_SHORT_TIME}
         ]);
         expect(sut).toEqual({"new_refresh_token": VALID_TOKEN});
@@ -46,7 +46,7 @@ describe('ServiceLogin_VerifyLoginActived class', () => {
         expect(model._props).toEqual([{"token": VALID_TOKEN}]);
         expect(tokenClass._props).toEqual([
             {"key": KEY_LOGIN_SHORT_TIME, "token": VALID_TOKEN},
-            {"key": TOKEN_LONG_TIME_EXPIRE, "token": VALID_LONG_TOKEN}
+            {"key": KEY_LOGIN_LONG_TIME, "token": VALID_LONG_TOKEN}
         ]);
     })
 
