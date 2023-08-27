@@ -11,4 +11,4 @@ export const AUTHORIZATION_MOBILE = process.env.AUTHORIZATION_MOBILE || "JanHWrs
 export const KEY_LOGIN_LONG_TIME = process.env.KEY_LOGIN_LONG_TIME || "8yH31AWWXSEtNtEJodQyfcYLak9RdeRP" ;
 export const KEY_LOGIN_SHORT_TIME = process.env.KEY_LOGIN_SHORT_TIME || "xTgUU76yksorNKlHFQcCxBKUyEZCchUX" ;
 export const TOKEN_LONG_TIME_EXPIRE = process.env.TOKEN_LONG_TIME_EXPIRE || '30d';
-export const TOKEN_SHORT_TIME_EXPIRE = process.env.TOKEN_LONG_TIME_EXPIRE || '1m';
+export const TOKEN_SHORT_TIME_EXPIRE = process.env.TOKEN_LONG_TIME_EXPIRE || '10m';
