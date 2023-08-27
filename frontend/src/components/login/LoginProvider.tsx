@@ -16,15 +16,18 @@ export function LoginProvider({children}:any)
     const [userData, setUserData] = useState<IUsersDataNoPassword | null>(null);
     const [error, setError] = useState<string>('');
 
+    if(error)
+        console.log('error :>> ', error);
+
     const verifyLogin = useCallback(async () => {
         Api.get('/api/v1/login')
             .then((userData) => {
-                setUserData(userData);
+                setUserData(userData.data);
                 return setLogged('yes');
             }).catch((err) => {
-                if (err.response?.status === 401)
+                if (err.status === 401)
                     return setLogged('no');
-                setError(err.response?.data.error || err.response?.data || err.message)
+                setError(err.message)
             });
     },[])
 

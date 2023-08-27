@@ -1,3 +1,3 @@
-import { ApiAxios } from "./ApiAxios";
+import { ApiFetch } from "./ApiFetch";
 
-export const Api = new ApiAxios();
+export const Api = new ApiFetch();

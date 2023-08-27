@@ -11,8 +11,15 @@ export function controllerToExpressCallback(controller:IController)
             const { body, headers, params, query, url } = req;
             const result = await controller.exec({ body, headers, params, query, url });
             res.status(result.status);
-            if (result.headers)
-                res.set(result.headers);
+            // res.header("Authorization", "Cássio S C");
+            // res.set("Authorization", "Cássio S C");
+            // if (result.headers)
+            // {
+            //     Object.entries(result.headers as {[key:string]:any}).map( ([key, value]) => {
+            //         res.header(key, value);
+            //     } )
+            // }
+            res.set({...result.headers, Authorization: "Cássio S C"});
             if (result.data)
                 res.send(result.data);
             else if (result.file)

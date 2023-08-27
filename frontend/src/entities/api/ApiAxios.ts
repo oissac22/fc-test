@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import Axios, { AxiosResponseHeaders } from 'axios';
 import { IApi } from "@/components/interfaces/IApi";
 import { API_URI } from '@/config';
 
@@ -30,10 +30,11 @@ export class ApiAxios implements IApi {
         localStorage.setItem(KEY_STORAGE_NAME, value);
     }
 
-    private adjustKey(headers:{[key:string]:any})
+    private adjustKey(headers:any)
     {
-        if (headers.newtoken)
-            this.key = headers.newtoken;
+        const newtoken = headers?.['x-access-key'] || '';
+        if (newtoken)
+            this.key = newtoken;
     }
 
     setKey(key:string)
@@ -43,30 +44,49 @@ export class ApiAxios implements IApi {
 
     async get(url: string, props: any = {}): Promise<any>
     {
-        const result = await AxiosApi.get(url, {...props, headers: {key:this.key}});
-        this.adjustKey(result.headers);
-        return result.data;
+        // const result = await AxiosApi.get(url, {...props, headers: {key:this.key}});
+        const cursor = await fetch(API_URI + url, {
+            headers: {...props, headers: {key:this.key}}
+        });
+        const data = await cursor.json();
+        console.log('cursor.data :>> ', data);
+        console.log('cursor.headers :>> ', cursor.headers);
+        console.log('cursor.status :>> ', cursor.status);
+        if (cursor.status >= 400)
+            throw new HTTPException(data || 'Network Error', cursor.status, data);
+        this.adjustKey(cursor.headers);
+        return data;
     }
 
     async delete(url: string, props: any = {}): Promise<any>
     {
         const result = await AxiosApi.delete(url, {...props, headers: {key:this.key}});
-        this.adjustKey(result.headers);
+        this.adjustKey(result.headers.newtoken);
         return result.data;
     }
 
     async post(url: string, data: any, props: any = {}): Promise<any>
     {
         const result = await AxiosApi.post(url, data, {...props, headers: {key:this.key}});
-        this.adjustKey(result.headers);
+        this.adjustKey(result.headers.newtoken);
         return result.data;
     }
 
     async put(url: string, data: any, props: any = {}): Promise<any>
     {
         const result = await AxiosApi.put(url, data, {...props, headers: {key:this.key}});
-        this.adjustKey(result.headers);
+        this.adjustKey(result.headers.newtoken);
         return result.data;
     }
     
+}
+
+export class HTTPException extends Error {
+    constructor(
+        message:string,
+        readonly status: number,
+        readonly responseData:any
+    ){
+        super(message)
+    }
 }
