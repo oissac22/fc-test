@@ -36,7 +36,7 @@ export class ModelLogin implements IModelLogin {
     async getLogin(refresh_token: string): Promise<IModelLoginData> {
         const result:IModelLoginData[] = await this.database.list(SQL_GET_LOGIN, [refresh_token]);
         if (!result?.length)
-            throw new Error(`token não encontrado nos registros de login`);
+            throw new Error(`token não encontrado nos registros de login: ${refresh_token}`);
         const login = result[0];
         return login;
     }

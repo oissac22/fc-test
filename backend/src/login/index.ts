@@ -1,8 +1,6 @@
 import { Api } from "../api";
 import express from 'express'
-import { ControllerLoginLogoff } from "./controller";
-import { ControllerLoginExecLogin } from "./controller/ControllerLoginExecLogin";
-import { ControllerLoginVerifyIfLogged } from "./controller/ControllerLoginVerifyIfLogged";
+import { ControllerLoginVerifyIfLogged, ControllerLoginExecLogin, ControllerLoginLogoff, ControllerLoginLogoffEveryRegs } from "./controller";
 import { controllerToExpressCallback } from "../entities/controllerToExpressCallback";
 import { featureServiceLogin } from "./featureServiceLogin";
 
@@ -16,5 +14,6 @@ routerExpress.post('/', controllerToExpressCallback(new ControllerLoginExecLogin
 routerExpress.use(controllerToExpressCallback(new ControllerLoginVerifyIfLogged(featureServiceLogin)));
 
 routerExpress.delete('/', controllerToExpressCallback(new ControllerLoginLogoff(featureServiceLogin)))
+routerExpress.delete('/every', controllerToExpressCallback(new ControllerLoginLogoffEveryRegs(featureServiceLogin)))
 
 Api.use('/api/v1/login', routerExpress)

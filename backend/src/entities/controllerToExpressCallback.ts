@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { IController } from "../interfaces/Controller";
-import { HTTPException } from "./error";
+import { HTTPException, HTTPStatus } from "./error";
 import { Logs } from "./logs";
+import { PATH_HTML } from "../config";
 
 export function controllerToExpressCallback(controller:IController)
 {
@@ -21,9 +22,10 @@ export function controllerToExpressCallback(controller:IController)
             else
                 res.send('');
         } catch (e) {
-            new Logs().error(e);
             if (e instanceof HTTPException)
-                res.status(e.status).json( { error:e.message } );
+                return res.status(e.status).json( { error:e.message } );
+            new Logs().error(e);
+            res.status(HTTPStatus.INTERNAL_SERVER_ERROR).sendFile(PATH_HTML + '/internal-error.html');
         }
     }
 }

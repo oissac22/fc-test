@@ -8,8 +8,8 @@ export class ControllerLoginLogoffEveryRegs implements IController {
     ) { }
 
     async exec(props: IControllerProps): Promise<TControllerExec> {
-        const { token } = props.params || {};
-        await this.service.logoffEveryMachines(token)
+        const { key } = props.headers || {};
+        await this.service.logoffEveryMachines(key)
         return {
             status:200,
             data: ''

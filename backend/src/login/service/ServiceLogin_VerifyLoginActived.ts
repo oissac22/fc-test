@@ -30,7 +30,6 @@ export class ServiceLogin_VerifyLoginActived {
             this.refresh_token = new_refresh_token;
             return { new_refresh_token }
         } catch (e) {
-            console.log(e)
             throw new HTTPException(`O login não existe ou expirou`, HTTPStatus.UNAUTHORIZED);
         }
     }
