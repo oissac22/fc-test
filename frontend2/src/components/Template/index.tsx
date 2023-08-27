@@ -23,6 +23,7 @@ function Menu()
         <div className={style.menu}>
             <Link to="/">HOME</Link>
             <Link to="/about">SOBRE</Link>
+            <Link to="/logoff">LOGOFF</Link>
         </div>
     </div>
 }

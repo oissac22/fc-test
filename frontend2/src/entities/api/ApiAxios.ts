@@ -25,7 +25,10 @@ export class ApiAxios implements IApi {
 
     set key(value:string)
     {
-        localStorage.setItem('HNgsVIOtKh', value);
+        if (!value)
+            localStorage.removeItem('HNgsVIOtKh');
+        else
+            localStorage.setItem('HNgsVIOtKh', value);
     }
 
     private async refreshToken()
