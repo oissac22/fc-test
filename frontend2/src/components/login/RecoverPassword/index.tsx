@@ -1,9 +1,8 @@
 import { useCallback, useRef } from 'react'
 import { CenterItem } from "../../centerItem";
-import { InputData } from '../../InputData/InputData';
 import style from './style.module.css'
 import { useNavigate } from 'react-router-dom';
-import { InputDataCPF, InputDataEmail, InputDataLogin, InputDataPassword } from '../../InputData';
+import { InputDataCPF, InputDataLogin, InputDataPassword } from '../../InputData';
 
 export type TDataRecoverPassword = {
     cpf: string,
