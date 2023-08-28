@@ -1,10 +1,11 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { useProviderEditUser } from './ProviderEditUser';
 import { NavigateFunction, useNavigate, useParams } from 'react-router-dom';
-import { InputData } from '../../components/InputData';
+import { InputData } from '../../components/InputData/InputData';
 import { IUsersDataInsert } from '../../interfaces/IModelUsers';
 import style from './style.module.css'
 import { Api } from '../../entities/api';
+import { InputDataAge, InputDataCPF, InputDataEmail, InputDataLogin, InputDataName, InputDataPassword, InputDataPhone } from '../../components/InputData';
 
 type TDataWrite = IUsersDataInsert & {passwordConfirm?:string};
 
@@ -113,16 +114,16 @@ export function EditUserForm({  }:IEditUserFormProps)
         <p>
             {title}
         </p>
-        <InputData data={data} name="name" placeholder='Nome' style={{width:250}} required={required} pattern='.*\S{2,}.*' title='Digite um nome válido' autoFocus />
-        <InputData data={data} name="email" placeholder='E-mail' type='email' style={{width:250}} required={required} title='Digite um e-mail válido' pattern='\S+@\S+\.\S+' />
-        <InputData data={data} name="phone" placeholder='Telefone' type='tel' style={{width:120}} required={required} pattern='\d{10,}' title='Digite um telefone válido, apenas número' />
-        <InputData data={data} name="cpf" placeholder='CPF' style={{width:100}} required={required}  pattern='\d{11}' title='Digite um cpf válido, apenas número' />
-        <InputData data={data} name="age" placeholder='Nascimento' type='date' style={{width:120}} required={required} />
-        <InputData data={data} name="mather" placeholder='Mãe' style={{width:250}} />
-        <InputData data={data} name="status" placeholder='Status' style={{width:100}} required={required}  />
-        <InputData data={data} name="login" placeholder='Login'  style={{width:120}} required={required} pattern='\w{2,}' title="O login deve conter ao menos 2 digitos" />
-        <InputData data={data} name="password" placeholder='Senha' type='password'  style={{width:150}} required={required} pattern='\w{6,}' title="a senha deve conter ao menos 6 digitos" />
-        <InputData data={data} name="passwordConfirm" placeholder='Confirme a senha' type='password' style={{width:150}} required={required} pattern='\w{6,}' title="a confirmação de deve conter ao menos 6 digitos" />
+        <InputDataName data={data} name="name" required={required} autoFocus />
+        <InputDataEmail data={data} name="email" required={required} />
+        <InputDataPhone data={data} name="phone" required={required} />
+        <InputDataCPF data={data} name="cpf" required={required} />
+        <InputDataAge data={data} name="age" required={required} />
+        <InputData data={data} name="mather" style={{width:250}} />
+        <InputData data={data} name="status" style={{width:100}} required={required}  />
+        <InputDataLogin data={data} name="login" required={required} />
+        <InputDataPassword data={data} name="password" required={required} />
+        <InputDataPassword data={data} name="passwordConfirm" required={required} title="a confirmação de deve conter ao menos 6 digitos" />
         <div className={style.formButtons}>
             <button>Salvar</button>
             {
@@ -132,3 +133,4 @@ export function EditUserForm({  }:IEditUserFormProps)
         </div>
     </form>
 }
+

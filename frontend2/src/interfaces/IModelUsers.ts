@@ -27,3 +27,5 @@ export type IUsersDataList = Pick<IUsersData, "id" | "name" | "email" | "phone">
 export type IUsersDataNoPassword = Omit<IUsersData, "login" | "password">
 
 export type IUsersListFilterNoLimit = Omit<IUsersListFilter, 'limit'>
+
+

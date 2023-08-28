@@ -1,5 +1,5 @@
 import { ChildrenShow } from "./ChildrenShow";
-import { GetPassword } from "./GetPassword";
+import { BlockPage } from "./BlockPage";
 import { LoginProvider } from "./LoginProvider";
 import { LoginStart } from "./LoginStart";
 
@@ -12,7 +12,7 @@ export function Login({ children }:ILoginProps)
     return <LoginProvider>
         <LoginStart />
         <ChildrenShow>{children}</ChildrenShow>
-        <GetPassword />
+        <BlockPage />
     </LoginProvider>
 }
 

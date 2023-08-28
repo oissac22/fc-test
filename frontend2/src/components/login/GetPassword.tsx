@@ -1,24 +1,21 @@
 import { FormEvent, useCallback, useRef, useState } from "react";
 import { CenterItem } from "../centerItem";
-import { useLoginProvider } from "./LoginProvider"
-import style from './style.module.css'
+import { useLoginProvider } from "./LoginProvider";
+import style from './style.module.css';
 import { Api } from "../../entities/api";
+import { TData, TDataKeys } from "./BlockPage";
+import { useNavigate } from "react-router-dom";
 
-type TData = {
-    login: string,
-    password: string
-}
 
-type TDataKeys = keyof TData;
+export function GetPassword() {
+    const navigate = useNavigate();
 
-export function GetPassword()
-{
     const { logged } = useLoginProvider();
     const data = useRef<TData>({ login: '', password: '' });
     const [loadding, setLoadding] = useState<boolean>(false);
 
     const handleSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
-        if(loadding)
+        if (loadding)
             return;
         setLoadding(true);
         e.preventDefault();
@@ -27,23 +24,27 @@ export function GetPassword()
                 Api.key = data.key;
                 document.location.reload();
             }).catch((err) => {
-                if(err.response?.status !== 401)
+                if (err.response?.status !== 401)
                     window.alert(err.response?.data?.error || err.response?.data || err.message);
             }).finally(() => {
                 setLoadding(false);
-            })
-    },[loadding])
+            });
+    }, [loadding]);
 
     const onChange = useCallback((name: TDataKeys) => {
-        return (e:any) => {
+        return (e: any) => {
             data.current[name] = e.target.value;
-        }
-    },[])
+        };
+    }, []);
 
-    if(logged !== 'no')
+    const handleRecoverPassword = useCallback(() => {
+        navigate('/recover')
+    }, [navigate])
+
+    if (logged !== 'no')
         return null;
 
-    const buttonConfirmCaption = loadding ? 'Enviando...' : 'Acessar'
+    const buttonConfirmCaption = loadding ? 'Enviando...' : 'Acessar';
 
     return <CenterItem>
         <form className={style.password} onSubmit={handleSubmit}>
@@ -52,7 +53,9 @@ export function GetPassword()
             <button title="acessar o sistema">
                 {buttonConfirmCaption}
             </button>
-            <button className="a" title="Clique aqui se estiver esquecido sua senha" type="button">Esqueci a senha</button>
+            <button className="a" title="Clique aqui se estiver esquecido sua senha" type="button" onClick={handleRecoverPassword}>
+                Esqueci a senha
+            </button>
         </form>
-    </CenterItem>
+    </CenterItem>;
 }
