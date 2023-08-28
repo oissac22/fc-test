@@ -25,3 +25,8 @@
 .filter input {
     flex: 1;
 }
+
+.NewUser {
+    padding: 10px 0;
+    text-align: right;
+}
