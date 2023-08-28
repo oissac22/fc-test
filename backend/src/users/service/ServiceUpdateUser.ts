@@ -31,7 +31,7 @@ export class ServiceUpdateUser {
             throw new HTTPException(`"${email}" não é um e-mail válido`, HTTPStatus.NOT_ACCEPTABLE, 'notValidEmail');
         if (phone && !Verify.phone(phone))  
             throw new HTTPException(`"${phone}" não é um telefone válido`, HTTPStatus.NOT_ACCEPTABLE, 'notValidPhone');
-        if(status && Verify.statusUser(status))
+        if(status && !Verify.statusUser(status))
             throw new HTTPException(`"${status}" não é um status válido`, HTTPStatus.NOT_ACCEPTABLE, 'notValidStatus');
         if (name && !Verify.nameUser(name))
             throw new HTTPException(`"${name}" não é um nome válido`, HTTPStatus.NOT_ACCEPTABLE, 'notValidName');
