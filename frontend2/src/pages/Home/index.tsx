@@ -4,6 +4,7 @@ import { NavigatePage } from './NavigatePage';
 import { NewUser } from './NewUser';
 import { ProviderListUsers } from './ProviderListUsers';
 import { TableList } from './TableList';
+import style from './style.module.css'
 
 export function Home() {
     return (
@@ -14,8 +15,10 @@ export function Home() {
                 <Filter />
                 <NavigatePage />
                 <TableList />
-                <NewUser />
-                <NavigatePage />
+                <div className={style.finalList}>
+                    <NavigatePage />
+                    <NewUser />
+                </div>
             </ProviderListUsers>
         </>
     );

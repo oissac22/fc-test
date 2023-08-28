@@ -30,3 +30,8 @@
     padding: 10px 0;
     text-align: right;
 }
+
+.finalList {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}

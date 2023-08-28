@@ -13,7 +13,7 @@ type TDataKeys = keyof TData;
 
 export function GetPassword()
 {
-    const { logged, verifyLogin } = useLoginProvider();
+    const { logged } = useLoginProvider();
     const data = useRef<TData>({ login: '', password: '' });
     const [loadding, setLoadding] = useState<boolean>(false);
 
@@ -25,9 +25,10 @@ export function GetPassword()
         Api.post('/api/v1/login', data.current)
             .then((data) => {
                 Api.key = data.key;
-                verifyLogin();
+                document.location.reload();
             }).catch((err) => {
-                window.alert(err.response?.data?.error || err.response?.data || err.message);
+                if(err.response?.status !== 401)
+                    window.alert(err.response?.data?.error || err.response?.data || err.message);
             }).finally(() => {
                 setLoadding(false);
             })

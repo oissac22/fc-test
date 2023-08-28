@@ -11,11 +11,11 @@ export function NavigatePage()
 
     const handlePreview = useCallback(() => {
         if (page <= 0)
-            return;
+            return null;
         load({
             index: (page - 1) * maxLimit
         })
-    },[page, load])
+    },[page, load, maxLimit])
 
     const handleNext = useCallback(() => {
         if (maxLimit > listUsers.length)
@@ -29,5 +29,5 @@ export function NavigatePage()
         <button onClick={handlePreview}>&lt;</button>
         <div>Página {page + 1}</div>
         <button onClick={handleNext}>&gt;</button>
-    </div>;
+    </div>
 }

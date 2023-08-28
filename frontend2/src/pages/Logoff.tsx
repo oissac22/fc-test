@@ -17,7 +17,8 @@ export function Logoff()
                 verifyLogin();
                 navigate('/');
             }).catch((err) => {
-                window.alert(err.response?.data || err.message)
+                if(err.response?.status !== 401)
+                    window.alert(err.response?.data?.error ||err.response?.data || err.message)
             });
     },[])
 

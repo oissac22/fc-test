@@ -31,7 +31,8 @@ export function ProviderListUsers({children}:any)
             .then((result) => {
                 setListUsers(result)
             }).catch((err) => {
-                window.alert(err.response?.data?.error || err.response?.data || err.message);
+                if(err.response?.status !== 401)
+                    window.alert(err.response?.data?.error || err.response?.data || err.message);
             }).finally(() => {
                 setLoadding(false);
             });
