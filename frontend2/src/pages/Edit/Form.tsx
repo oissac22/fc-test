@@ -28,9 +28,8 @@ function adjustDataBeforeSubmit(data:TDataWrite)
     return true;
 }
 
-function updateUser(id:number, user:TDataWrite)
+function updateUser(id:number | string, user:TDataWrite)
 {
-    console.log('user :>> ', user);
     Api.put(`/api/v1/users/${id}`, user)
         .then(() => {
             window.alert(`Usuário atualizado com sucesso`);
@@ -52,6 +51,19 @@ function insertUser(user:TDataWrite, navigate: NavigateFunction)
                 return;
             window.alert(err.response?.data?.error || err.response?.data || err.message);
         });
+}
+
+function deleteUser(id:number | string, navigate: NavigateFunction)
+{
+    Api.delete(`/api/v1/users/${id}`)
+        .then(() => {
+            window.alert("Usuário deletado com sucesso");
+            navigate('/');
+        }).catch((err) => {
+            if (err.response?.status === 401)
+                return;
+            window.alert(err.response?.data?.error || err.response?.data || err.message);
+        })
 }
 
 export function EditUserForm({  }:IEditUserFormProps)
@@ -85,9 +97,15 @@ export function EditUserForm({  }:IEditUserFormProps)
         if (required) {
             insertUser(dataWrite, navigate);
         } else {
-            updateUser(Number(id), dataWrite);
+            updateUser(id, dataWrite);
         }
     },[required, id])
+
+    const handleDelete = useCallback(() => {
+        if (!confirm(`Deseja deletar este usuário?`))
+            return;
+        deleteUser(id || '', navigate)
+    },[id, navigate])
 
     const title = required ? `Novo Usuário` : `Editar Usuário`;
 
@@ -107,7 +125,10 @@ export function EditUserForm({  }:IEditUserFormProps)
         <InputData data={data} name="passwordConfirm" placeholder='Confirme a senha' type='password' style={{width:150}} required={required} pattern='\w{6,}' title="a confirmação de deve conter ao menos 6 digitos" />
         <div className={style.formButtons}>
             <button>Salvar</button>
-            <button className='r' type='button'>Deletar</button>
+            {
+                required ? null :
+                <button className='r' type='button' onClick={handleDelete}>Deletar</button>
+            }
         </div>
     </form>
 }

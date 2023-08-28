@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useCallback } from "react"
 import { IUsersDataList, IUsersListFilterNoLimit } from "../../interfaces/IModelUsers";
 import { Api } from "../../entities/api";
 
-const LIMIT = 2;
+const LIMIT = 10;
 
 interface IProviderListUsersProps {
     listUsers: IUsersDataList[],
