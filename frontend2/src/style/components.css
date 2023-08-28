@@ -30,11 +30,15 @@ button.a {
     text-decoration: underline;
 }
 
+button.r {
+    background-color: var(--red);
+}
+
 p {
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 2rem;
+    font-size: 1.6rem;
 }
 
 table {
