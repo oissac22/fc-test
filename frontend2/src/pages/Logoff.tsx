@@ -3,6 +3,7 @@ import { CenterItem } from "../components/centerItem";
 import { Api } from "../entities/api";
 import { useLoginProvider } from "../components/login/LoginProvider";
 import { useNavigate } from 'react-router-dom'
+import { HeadHTML } from "../components";
 
 export function Logoff()
 {
@@ -21,6 +22,7 @@ export function Logoff()
     },[])
 
     return <CenterItem>
+        <HeadHTML titleValue='Saindo...' />
         Saindo...
     </CenterItem>
 }

@@ -1,0 +1,11 @@
+.list tbody tr {
+    cursor: pointer;
+}
+
+.list tbody tr:hover {
+    background-color: var(--bg-color-2);
+}
+
+.listContainer {
+    overflow-x: auto;
+}

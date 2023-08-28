@@ -24,3 +24,4 @@ routerExpress.delete('/:id', controllerToExpressCallback( new ControllerUserDele
 // routerExpress.get('/api/v1/users/logindata', controllerToExpressCallback( new ControllerUserDataByPassword(service) ))
 
 Api.use('/api/v1/users', routerExpress);
+

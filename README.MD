@@ -18,3 +18,11 @@
   - delete login
 - DELETE /api/v1/login/every
   - delete every login from the logged user
+
+# urls from users
+
+- GET /api/v1/users
+- GET /api/v1/users/:id
+- POST /api/v1/users
+- PUT /api/v1/users/:id
+- DELETE /api/v1/users/:id
