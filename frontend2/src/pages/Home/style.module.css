@@ -9,3 +9,19 @@
 .listContainer {
     overflow-x: auto;
 }
+
+.NavigatePage {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.filter {
+    padding: 10px 0 20px 0;
+    display: flex;
+}
+
+.filter input {
+    flex: 1;
+}

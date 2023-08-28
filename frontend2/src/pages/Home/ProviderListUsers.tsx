@@ -1,13 +1,15 @@
 import { createContext, useContext, useState, useCallback } from "react"
-import { IUsersDataList, IUsersListFilter, IUsersListFilterNoLimit } from "../../interfaces/IModelUsers";
+import { IUsersDataList, IUsersListFilterNoLimit } from "../../interfaces/IModelUsers";
 import { Api } from "../../entities/api";
 
-const LIMIT = 10;
+const LIMIT = 2;
 
 interface IProviderListUsersProps {
     listUsers: IUsersDataList[],
-    load: (props: IUsersListFilter) => void,
-    page: number
+    load: (props: IUsersListFilterNoLimit) => void,
+    page: number,
+    maxLimit:number,
+    loadding: boolean
 }
 
 const Context = createContext({} as IProviderListUsersProps);
@@ -18,12 +20,14 @@ export function ProviderListUsers({children}:any)
     const [loadding, setLoadding] = useState<boolean>(false);
     const [page, setPage] = useState<number>(0);
 
+    const maxLimit = LIMIT;
+
     const load = useCallback((props:IUsersListFilterNoLimit) => {
         if (loadding)
             return;
         setPage(props.index / LIMIT);
         setLoadding(true);
-        Api.get(`/api/v1/users?index=${props.index}&limit=${LIMIT}&filter=${props.filter || ''}`)
+        return Api.get(`/api/v1/users?index=${props.index}&limit=${LIMIT}&filter=${props.filter || ''}`)
             .then((result) => {
                 setListUsers(result)
             }).catch((err) => {
@@ -37,7 +41,9 @@ export function ProviderListUsers({children}:any)
         value={{
             listUsers,
             load,
-            page
+            page,
+            maxLimit,
+            loadding
         }}
     >
         {children}
