@@ -1,5 +1,5 @@
 import { IApi } from "../../components/interfaces/IApi";
-import { API_URI } from '../../../config';
+import { API_URI } from '../../config';
 import axios from 'axios';
 
 const Api = axios.create({

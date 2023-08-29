@@ -9,6 +9,7 @@ Api.get('/test-error', controllerToExpressCallback((new ControllerTestError())))
 
 import './login'
 import './users'
+import './frontend'
 
 Api.use(controllerToExpressCallback(new ControllerNotFound()))
 
