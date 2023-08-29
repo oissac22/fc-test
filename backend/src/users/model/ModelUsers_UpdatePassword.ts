@@ -2,7 +2,7 @@ import { passwordCrip } from "../../entities/passwordCrip";
 import { IUsersDataUpdatePassword } from "../../interfaces/IModelUsers";
 import { ISQL } from "../../interfaces/ISQL";
 
-const SQL_UPDATE = "update users login = ?, password = ? from  where cpf = ?"
+const SQL_UPDATE = "update users login = ?, password = ?, dateUpdate = ? from  where cpf = ?"
 
 export class ModelUsers_UpdatePassword {
     constructor(
@@ -17,7 +17,7 @@ export class ModelUsers_UpdatePassword {
         const { cpf, login, password } = this.data;
         await this.database.exec(
             SQL_UPDATE,
-            [ login, password, cpf ]
+            [ login, password, new Date().toISOString(), cpf ]
         );
     }
 }
