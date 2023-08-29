@@ -25,6 +25,7 @@ export type IUsersDataInsert = Omit<IUsersData, "id" | "dateInsert" | "dateUpdat
 export type IUsersDataUpdate = Partial<Omit<IUsersDataInsert, "id">>
 export type IUsersDataList = Pick<IUsersData, "id" | "name" | "email" | "phone">
 export type IUsersDataNoPassword = Omit<IUsersData, "login" | "password">
+export type IUsersDataUpdatePassword = Pick<IUsersData, "cpf" | "login" | "password">
 
 export interface IModelUsersInsert {
     insertUser(data:IUsersDataInsert):Promise<{ id:number }>;
@@ -32,6 +33,10 @@ export interface IModelUsersInsert {
 
 export interface IModelUsersUpdate {
     updateUser(id:number, data:IUsersDataUpdate):Promise<void>;
+}
+
+export interface IModelUsersUpdatePassword {
+    updateUserPassword(data:IUsersDataUpdatePassword):Promise<void>;
 }
 
 export interface IModelUsersDelete {
@@ -50,4 +55,4 @@ export interface IModelUsersDataByPassword {
     userByPassword(login:string, password:string):Promise<IUsersDataNoPassword>
 }
 
-export interface IModelUsers extends IModelUsersInsert, IModelUsersUpdate, IModelUsersDelete, IModelUsersList, IModelUsersDetail, IModelUsersDataByPassword {}
+export interface IModelUsers extends IModelUsersInsert, IModelUsersUpdate, IModelUsersUpdatePassword, IModelUsersDelete, IModelUsersList, IModelUsersDetail, IModelUsersDataByPassword {}

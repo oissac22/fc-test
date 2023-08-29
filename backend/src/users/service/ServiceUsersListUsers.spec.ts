@@ -1,4 +1,4 @@
-import { IModelUsers, IUsersDataInsert, IUsersDataList, IUsersDataNoPassword, IUsersListFilter } from "../../interfaces/IModelUsers"
+import { IModelUsers, IModelUsersList, IUsersDataInsert, IUsersDataList, IUsersDataNoPassword, IUsersListFilter } from "../../interfaces/IModelUsers"
 import { ServiceUsersListUsers } from "./ServiceUsersListUsers"
 
 const FAKE_RESULT =  [                                                                                                                                                                                                                   
@@ -47,25 +47,10 @@ function newServiceUsersListUsers(props: IUsersListFilter)
     return { service, model }
 }
 
-class FakeModelUsers implements IModelUsers {
+class FakeModelUsers implements IModelUsersList {
     _props:any = null;
-    insertUser(data: IUsersDataInsert): Promise<{ id: number }> {
-        throw new Error("Method not implemented.")
-    }
-    updateUser(id: number, data: Partial<Omit<IUsersDataInsert, "id">>): Promise<void> {
-        throw new Error("Method not implemented.")
-    }
-    deleteUser(id: number): Promise<void> {
-        throw new Error("Method not implemented.")
-    }
     async listUsers(props: IUsersListFilter): Promise<IUsersDataList[]> {
         this._props = props;
         return FAKE_RESULT;
-    }
-    detailUser(id: number): Promise<IUsersDataNoPassword> {
-        throw new Error("Method not implemented.")
-    }
-    userByPassword(login: string, password: string): Promise<IUsersDataNoPassword> {
-        throw new Error("Method not implemented.")
     }
 }

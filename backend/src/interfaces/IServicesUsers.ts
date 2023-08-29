@@ -1,4 +1,4 @@
-import { IUsersDataInsert, IUsersDataList, IUsersDataNoPassword, IUsersDataUpdate, IUsersListFilter } from "./IModelUsers";
+import { IUsersDataInsert, IUsersDataList, IUsersDataNoPassword, IUsersDataUpdate, IUsersDataUpdatePassword, IUsersListFilter } from "./IModelUsers";
 
 export interface IServicesUsersInsert {
     insertUser(data:IUsersDataInsert):Promise<{ id:number }>;
@@ -6,6 +6,10 @@ export interface IServicesUsersInsert {
 
 export interface IServicesUsersUpdate {
     updateUser(id:number, data:IUsersDataUpdate):Promise<void>;
+}
+
+export interface IServicesUsersUpdatePassword {
+    updatePasswordUser(data:IUsersDataUpdatePassword):Promise<void>;
 }
 
 export interface IServicesUsersDelete {
@@ -24,4 +28,4 @@ export interface IServicesUsersDataByPassword {
     userByPassword(login:string, password:string):Promise<IUsersDataNoPassword>
 }
 
-export interface IServicesUsers extends IServicesUsersInsert, IServicesUsersUpdate, IServicesUsersDelete, IServicesUsersList, IServicesUsersDetail, IServicesUsersDataByPassword { }
+export interface IServicesUsers extends IServicesUsersInsert, IServicesUsersUpdate, IServicesUsersDelete, IServicesUsersList, IServicesUsersDetail, IServicesUsersDataByPassword, IServicesUsersUpdatePassword { }

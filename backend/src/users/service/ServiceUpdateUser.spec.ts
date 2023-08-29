@@ -1,4 +1,4 @@
-import { IModelUsers, IUsersDataList, IUsersDataNoPassword, IUsersDataUpdate, IUsersListFilter } from "../../interfaces/IModelUsers"
+import { IModelUsers, IModelUsersUpdate, IUsersDataList, IUsersDataNoPassword, IUsersDataUpdate, IUsersListFilter } from "../../interfaces/IModelUsers"
 import { ServiceUpdateUser } from "./ServiceUpdateUser"
 
 const FAKE_DATA:IUsersDataUpdate = {
@@ -117,24 +117,9 @@ function newServiceUpdateUser(id:number, data: IUsersDataUpdate)
     return { service, models };
 }
 
-class FakeModels implements IModelUsers {
+class FakeModels implements IModelUsersUpdate {
     _data:any = null;
-    async insertUser(data: IUsersDataUpdate): Promise<{ id: number }> {
-        throw new Error("Method not implemented.")
-    }
     async updateUser(id: number, data: IUsersDataUpdate): Promise<void> {
         this._data = data;
-    }
-    deleteUser(id: number): Promise<void> {
-        throw new Error("Method not implemented.")
-    }
-    listUsers(props: IUsersListFilter): Promise<IUsersDataList[]> {
-        throw new Error("Method not implemented.")
-    }
-    detailUser(id: number): Promise<IUsersDataNoPassword> {
-        throw new Error("Method not implemented.")
-    }
-    userByPassword(login: string, password: string): Promise<IUsersDataNoPassword> {
-        throw new Error("Method not implemented.")
     }
 }

@@ -1,4 +1,4 @@
-import { IModelUsers, IUsersListFilter } from "../../interfaces/IModelUsers";
+import { IModelUsersList, IUsersListFilter } from "../../interfaces/IModelUsers";
 import { MAX_LIMIT } from ".";
 
 
@@ -6,7 +6,7 @@ export class ServiceUsersListUsers {
 
     constructor(
         private readonly props: IUsersListFilter,
-        private readonly modelUsers: IModelUsers
+        private readonly modelUsers: IModelUsersList
     ) { }
 
     private verifyProps() {

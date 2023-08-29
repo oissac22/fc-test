@@ -3,13 +3,13 @@ import { cpfAdjustToInsert } from "../../entities/cpfInsert";
 import { HTTPException, HTTPStatus } from "../../entities/error";
 import { phoneAdjustToInsert } from "../../entities/phoneInsert";
 import { Verify } from "../../entities/verify";
-import { IModelUsers, IUsersDataInsert } from "../../interfaces/IModelUsers";
+import { IModelUsersInsert, IUsersDataInsert } from "../../interfaces/IModelUsers";
 
 
 export class ServiceInsertUser {
     constructor(
         private readonly data: IUsersDataInsert,
-        private readonly modelUsers: IModelUsers
+        private readonly modelUsers: IModelUsersInsert
     ) {
         this.data.cpf = cpfAdjustToInsert(this.data.cpf);
         this.data.phone = phoneAdjustToInsert(this.data.phone);
