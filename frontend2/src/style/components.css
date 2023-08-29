@@ -1,4 +1,5 @@
-input {
+input,
+select {
     padding: 10px;
     background-color: transparent;
     border: solid 1px var(--text);
@@ -7,7 +8,13 @@ input {
     outline: none;
 }
 
-input:focus {
+select option {
+    background-color: var(--bg-color);
+    color: var(--text);
+}
+
+input:focus,
+select:focus {
     border-color: var(--button-color);
 }
 

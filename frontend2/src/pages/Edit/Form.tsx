@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import { useProviderEditUser } from './ProviderEditUser';
 import { NavigateFunction, useNavigate, useParams } from 'react-router-dom';
 import { InputData } from '../../components/InputData/InputData';
@@ -6,6 +6,7 @@ import { IUsersDataInsert } from '../../interfaces/IModelUsers';
 import style from './style.module.css'
 import { Api } from '../../entities/api';
 import { InputDataAge, InputDataCPF, InputDataEmail, InputDataLogin, InputDataName, InputDataPassword, InputDataPhone } from '../../components/InputData';
+import { SelectData } from '../../components/InputData/SelectData';
 
 type TDataWrite = IUsersDataInsert & {passwordConfirm?:string};
 
@@ -72,6 +73,7 @@ export function EditUserForm({  }:IEditUserFormProps)
     const {id} = useParams();
     const navigate = useNavigate();
     const { userData, loadData } = useProviderEditUser();
+    const [refresh, setRefresh] = useState<number>(0);
 
     const { dateInsert, dateUpdate, status, ...dataInsertDefault } = userData;
 
@@ -86,8 +88,9 @@ export function EditUserForm({  }:IEditUserFormProps)
     }, [id])
     
     useEffect(() => {
-        const { dateInsert, dateUpdate, status, ...dataInsertDefault } = userData;
-        data.current = { login:'', password:'', status:'active', passwordConfirm:'', ...dataInsertDefault};
+        const { dateInsert, dateUpdate, ...dataInsertDefault } = userData;
+        data.current = { login:'', password:'', passwordConfirm:'', ...dataInsertDefault};
+        setRefresh(Math.random());
     },[userData])
 
     const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
@@ -120,7 +123,13 @@ export function EditUserForm({  }:IEditUserFormProps)
         <InputDataCPF data={data} name="cpf" required={required} />
         <InputDataAge data={data} name="age" required={required} />
         <InputData data={data} name="mather" style={{width:250}} />
-        <InputData data={data} name="status" style={{width:100}} required={required}  />
+        <SelectData
+            data={data}
+            name="status"
+            style={{width:100}}
+            required={required}
+            itens={[["active", "Ativo"], ["inactive", "Inativo"], ["block", "Bloqueado"]]}
+        />
         <InputDataLogin data={data} name="login" required={required} />
         <InputDataPassword data={data} name="password" required={required} />
         <InputDataPassword data={data} name="passwordConfirm" required={required} title="a confirmação de deve conter ao menos 6 digitos" />
