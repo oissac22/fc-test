@@ -1,8 +1,9 @@
+import { HTTPException, HTTPStatus } from "../../entities/error";
 import { passwordCrip } from "../../entities/passwordCrip";
 import { IUsersDataUpdatePassword } from "../../interfaces/IModelUsers";
 import { ISQL } from "../../interfaces/ISQL";
 
-const SQL_UPDATE = "update users login = ?, password = ?, dateUpdate = ? from  where cpf = ?"
+const SQL_UPDATE = "update users set login = ?, password = ?, dateUpdate = ? where cpf = ?"
 
 export class ModelUsers_UpdatePassword {
     constructor(
@@ -15,9 +16,11 @@ export class ModelUsers_UpdatePassword {
 
     async result(): Promise<void> {
         const { cpf, login, password } = this.data;
-        await this.database.exec(
+        const result = await this.database.exec(
             SQL_UPDATE,
             [ login, password, new Date().toISOString(), cpf ]
         );
+        if (!result?.count)
+            throw new HTTPException(`CPF não encontrado`, HTTPStatus.NOT_FOUND, `cpfNotFound`)
     }
 }

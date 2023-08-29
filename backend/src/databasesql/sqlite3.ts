@@ -23,7 +23,7 @@ export class SQLite implements ISQL {
             this.dbSqlite.run(query, props || [], function(err){
                 if (err)
                     rej(err);
-                res({id: this.lastID});
+                res({id: this.lastID, count:this.changes});
             })
         })
     }

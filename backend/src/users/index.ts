@@ -8,11 +8,14 @@ import { ServiceUsers } from "./service";
 import { controllerToExpressCallback } from '../entities/controllerToExpressCallback';
 import { ControllerLoginVerifyIfLogged } from '../login/controller/ControllerLoginVerifyIfLogged';
 import { featureServiceLogin } from '../login/featureServiceLogin';
+import { ControllerUserUpdatePassword } from './controller/ControllerUserUpdatePassword';
 
 const model = new ModelUsers(Database)
 const service = new ServiceUsers(model)
 
 const routerExpress = express.Router();
+
+routerExpress.post('/recoverpassword', controllerToExpressCallback( new ControllerUserUpdatePassword(service) ))
 
 routerExpress.use(controllerToExpressCallback( new ControllerLoginVerifyIfLogged(featureServiceLogin) ))
 

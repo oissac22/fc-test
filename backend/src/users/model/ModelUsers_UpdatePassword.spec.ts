@@ -15,7 +15,7 @@ describe("ModelUsers_UpdatePassword class", () => {
         );
         const sut = await model.result();
         expect(sut).toEqual(undefined);
-        expect(database._query).toBe("update users login = ?, password = ?, dateUpdate = ? from  where cpf = ?");
+        expect(database._query).toBe("update users set login = ?, password = ?, dateUpdate = ? where cpf = ?");
         expect(database._props).toEqual(['validlogin', passwordCrip('123456'), FAKE_DATE.toISOString(), '00000000000']);
     })
 

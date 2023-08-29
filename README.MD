@@ -21,6 +21,7 @@
 
 # urls from users
 
+- POST /api/v1/users/recoverpassword
 - GET /api/v1/users
 - GET /api/v1/users/:id
 - POST /api/v1/users
