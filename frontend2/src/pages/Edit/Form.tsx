@@ -73,7 +73,6 @@ export function EditUserForm({  }:IEditUserFormProps)
     const {id} = useParams();
     const navigate = useNavigate();
     const { userData, loadData } = useProviderEditUser();
-    const [refresh, setRefresh] = useState<number>(0);
 
     const { dateInsert, dateUpdate, status, ...dataInsertDefault } = userData;
 
@@ -90,7 +89,6 @@ export function EditUserForm({  }:IEditUserFormProps)
     useEffect(() => {
         const { dateInsert, dateUpdate, ...dataInsertDefault } = userData;
         data.current = { login:'', password:'', passwordConfirm:'', ...dataInsertDefault};
-        setRefresh(Math.random());
     },[userData])
 
     const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
